@@ -1,16 +1,125 @@
 ---
 title: "Data Analysis"
+output:
+  pdf_document:
+    extra_dependencies: ["amsmath"]
 ---
 
-### Distance Analysis
+### Indices
 
-**Density and Abundance Estimation**
+The following indices are used in all model descriptions:
+
+$i$ - strata with max $I$
+
+$j$ - grid cells with max $J$
+
+$k$ - points within a grid cell with max $K=16$, and $K_{[s]}$ is the number of points surveyed in grid cell $j$
+
+$l$ - Bird Conservation Regions with max $L$
+
+$d$ - distance bins with max $d_{[max]}=10$
+
+$d_{[mid]}$, $d_{[low]}$, and $d_{[high]}$ are the distance mid-point, lower bound, and upper bound for distance bin $d$. $d_{[max,high]}$ is the upper bound for the furthest distance bin (i.e., the radius of the entire point-level plot).
+
+$r$ – 2-min time removal bins within the 6-min survey with max $R=3$
+
+$t$ – years with max $T$
+
+$m$ – posterior samples
+
+### Hurdle model
 
 ***State process***
 
-We developed a zero-inflated N-mixture model (Royle 2004, Sillett et al. 2011) to estimate density and abundance for all strata and superstrata across all species with sufficient data. For a given species, the true occupancy state of point count location $k$ in grid $j$, stratum $i$, and year $t$ is distributed
+We model species occupancy of grid cells as
 
-$$z_{ijkt} \sim Bern(ψ_{i}).$$
+$$\begin{equation}z_{ijt} \sim Bernoulli(ψ_{it})\end{equation}$$ {#eq-hurdle_z}
+
+<center>and</center>
+
+$$\begin{equation}logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2})\end{equation}$$ {#eq-hurdle_psi}
+
+where $ψ_{it}$ is the probability of species occupancy of a grid cell in stratum $i$ in year $t$, $z_{ijt}$ is the latent occupancy state of grid cell $j$ in stratum $i$ during year $t$, and $μ_{[ψ],t}$ and $SD_{[ψ],t}^{2}$ are year-specific mean and variance hyper-parameters. We exclude data for all strata in which the species was never detected (effectively conditioning occupancy on being within the species range). We model species occupancy of points within an occupied grid cell as
+
+$$\begin{equation}u_{ijt}|z_{ijt} \sim Binomial(K,θ_{it}×z_{ijt})\end{equation}$$ {#eq-hurdle_u}
+
+<center>and</center>
+
+$$\begin{equation}logit(θ_{it}) \sim Normal(μ_{[θ],t},SD_{[θ],t}^{2}),\end{equation}$$ {#eq-hurdle_theta}
+
+where $θ_{it}$ is the probability of species occupancy of a point within an occupied grid cell in stratum $i$ and year $t$, $u_{ijt}$ is the latent occupancy state describing the number of points occupied within grid cell $j$, stratum $i$, and year $t$, and $μ_{[θ],t}$ and $SD_{[θ],t}^{2}$ are year-specific mean and variance hyper-parameters. We model abundance of independent clusters of individuals within $d_{[max,high]}$ of points within a grid cell as
+
+$$\begin{equation}N_{ijt} \sim Poisson(λ_{ijt}×u_{ijt})+u_{ijt}\end{equation}$$ {#eq-hurdle_N}
+
+<center>and</center>
+
+$$\begin{equation}log(λ_{ijt})=α_{it}+ε_{jt}\end{equation}$$ {#eq-hurdle_lambda}
+
+where $α_{it}$ and $ε_{jt}$ are stratum- and grid-cell-specific random effects, respectively, and $α_{it}$ is also subject to a fixed effect of year:
+
+$$\begin{equation}α_{it} \sim Normal(μ_{[α],t},SD_{[α],t}^{2})\end{equation}$$ {#eq-hurdle_alpha}
+
+<center>and</center>
+
+$$\begin{equation}ε_{it} \sim Normal(0,SD_{[ε]}^{2}).\end{equation}$$ {#eq-hurdle_epsilon}
+
+We derive density, D, as
+
+$$\begin{equation}D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}},\end{equation}$$ {#eq-hurdle_D}
+
+where $K×∑_{d=1}^{d_{[max]}}A_{d}$ is the effective area ($km^{2}$) of estimation for a grid cell and $s$ is the mean cluster size for independent detections, which is sampled from the distribution
+
+$$\begin{equation}s \sim Gamma(k,v)+1,\end{equation}$$ {#eq-hurdle_s}
+
+where k and v are derived from the mean and variance of observed cluster sizes. We subtract 1 from the mean when calculating k and v and add 1 to the random variable to ensure cluster sizes were $>1$. We derive stratum-level density estimates by averaging all $D_{ijt}$ within each stratum, and we take the area-weighted average of strata estimates to obtain superstrata density and occupancy estimates.
+
+***Observation process***
+
+We model the sum of observed counts (of independent clusters of individuals) across all points surveyed within a grid cell ($n_{ijtl}$) and the number of points where the species was detected ($y_{ijtl}$) as
+
+$$\begin{equation}n_{ijtl} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),\end{equation}$$ {#eq-hurdle_n}
+
+$$\begin{equation}y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr)\end{equation},~\mathrm{and}$$ {#eq-hurdle_y}
+
+$$\begin{equation}p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}\end{equation},$$ {#eq-hurdle_p_s}
+
+where $p_{[a],tl}$ is a year- and BCR-specific availability component of detection probability, $p_{[p],t}$ is a year-specific perceptibility component of detection probability, $K_{[s],ijt}⁄K$ is survey effort, and $p_{[s],tl}$ is the probability of detecting the species at an occupied point. Detection components summarize probability vectors,
+
+$$\begin{equation}p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}} \end{equation}$$ {#eq-hurdle_p_a}
+
+<center>and</center>
+
+$$\begin{equation}p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}} \end{equation},$$ {#eq-hurdle_p_p}
+
+consisting of multinomial cell probabilities for
+
+$$\begin{equation}\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)\end{equation}$$ {#eq-hurdle_pi_a}
+
+<center>and</center>
+
+$$\begin{equation}\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr)\end{equation},$$ {#eq-hurdle_pi_p}
+
+where $\mathbf{y_{[a],ijtl}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period, $$\begin{equation}π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1}\end{equation},$$ {#eq-hurdle_pi_a_cell} and are scaled to sum to 1,
+
+$$\begin{equation}π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl} \end{equation},$$ {#eq-hurdle_pi_a_cell_c}
+
+where $p_{[ar],tl}$ is the availability for a single 2-min time removal bin. Surveys in 2008-2009 were 5 min instead of 6 min in length, so for these years, we calculate the availability for a 1-min interval, $p_{[a1],tl}=1-\biggl((1-p_{[ar],tl})^3\biggr)^{1/6}$, and then calculate the unscaled cell probability for the third (1 min) period as $π_{[a],(t≤2)(r=3)l}=p_{[a1],tl}×(1-p_{[ar],tl})^{r-1}$. Cell probabilities for perceptibility account for area of bins with increasing distance:
+
+$$\begin{equation}π_{[p],td}=\frac{p_{[pd],td}A_d}{∑_{d=1}^{d_{[max]}}A_d}\end{equation},~\mathrm{and}$$ {#eq-hurdle_pi_p_cell}
+
+$$\begin{equation}π_{[p],td}^{[c]}=π_{[p],td}⁄p_{[p],t}\end{equation},$$ {#eq-hurdle_pi_p_cell_c}
+
+where $p_{[pd],td}$ is the perceptibility within distance bin $d$ in year $t$, and $A_d$ is the area of distance bin $d$. We model $p_{[pd],td}$ using one of four possible perceptibility models: 1) a half-normal constant model, 2) a hazard rate constant model, 3) a half-normal year model, and 4) a hazard rate year model. For half-normal functions, we calculated \$p\_{\[pd\],td} for each distance class as:
+
+$$\begin{equation}p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d} \end{equation},$$ {#eq-hurdle_p_pd_HN}
+
+where $d_{[low]}$ and $d_{[high]}$ are the bounds for distance bin $d$ and $σ_t$ is the half-normal shape parameter. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated $p_{[pd],td}$ at the midpoint, $d_{[mid]}$, of each distance class:
+
+$$\begin{equation}p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr)\end{equation},$$ {#eq-hurdle_p_pd_HZ}
+
+where $h_t$ and $b$ are estimated parameters for the hazard function. For perceptibility models $\eqref{#eq-hurdle_p_pd_HN}$ and $\@eqref{#eq-hurdle_p_pd_HZ}$, we draw year-specific shape parameters from hyperdistributions:
+
+..............................................................................................................
 
 The number of independent clusters of individuals, $N$, of a given species at point count location $k$ in grid $j$, stratum $i$, and year $t$ came from a Poisson distribution
 
