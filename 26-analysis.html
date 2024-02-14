@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -34,7 +34,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="26-analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="26-analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -79,61 +78,43 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="hurdle-model">Hurdle model</h3>
 <p><strong><em>State process</em></strong></p>
 <p>We model species occupancy of grid cells as</p>
-<p><span id="eq-hurdle_z"><span class="math display">\[\begin{equation}z_{ijt} \sim Bernoulli(ψ_{it})\end{equation} \tag{1}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_psi"><span class="math display">\[\begin{equation}logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2})\end{equation} \tag{2}\]</span></span></p>
+<p><span id="eq-hurdle_z"><span class="math display">\[z_{ijt} \sim Bernoulli(ψ_{it}) \tag{1}\]</span></span></p>
+<p><span id="eq-hurdle_psi"><span class="math display">\[logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2}) \tag{2}\]</span></span></p>
 <p>where <span class="math inline">\(ψ_{it}\)</span> is the probability of species occupancy of a grid cell in stratum <span class="math inline">\(i\)</span> in year <span class="math inline">\(t\)</span>, <span class="math inline">\(z_{ijt}\)</span> is the latent occupancy state of grid cell <span class="math inline">\(j\)</span> in stratum <span class="math inline">\(i\)</span> during year <span class="math inline">\(t\)</span>, and <span class="math inline">\(μ_{[ψ],t}\)</span> and <span class="math inline">\(SD_{[ψ],t}^{2}\)</span> are year-specific mean and variance hyper-parameters. We exclude data for all strata in which the species was never detected (effectively conditioning occupancy on being within the species range). We model species occupancy of points within an occupied grid cell as</p>
-<p><span id="eq-hurdle_u"><span class="math display">\[\begin{equation}u_{ijt}|z_{ijt} \sim Binomial(K,θ_{it}×z_{ijt})\end{equation} \tag{3}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_theta"><span class="math display">\[\begin{equation}logit(θ_{it}) \sim Normal(μ_{[θ],t},SD_{[θ],t}^{2}),\end{equation} \tag{4}\]</span></span></p>
+<p><span id="eq-hurdle_u"><span class="math display">\[u_{ijt}|z_{ijt} \sim Binomial(K,θ_{it}×z_{ijt}) \tag{3}\]</span></span></p>
+<p><span id="eq-hurdle_theta"><span class="math display">\[logit(θ_{it}) \sim Normal(μ_{[θ],t},SD_{[θ],t}^{2}), \tag{4}\]</span></span></p>
 <p>where <span class="math inline">\(θ_{it}\)</span> is the probability of species occupancy of a point within an occupied grid cell in stratum <span class="math inline">\(i\)</span> and year <span class="math inline">\(t\)</span>, <span class="math inline">\(u_{ijt}\)</span> is the latent occupancy state describing the number of points occupied within grid cell <span class="math inline">\(j\)</span>, stratum <span class="math inline">\(i\)</span>, and year <span class="math inline">\(t\)</span>, and <span class="math inline">\(μ_{[θ],t}\)</span> and <span class="math inline">\(SD_{[θ],t}^{2}\)</span> are year-specific mean and variance hyper-parameters. We model abundance of independent clusters of individuals within <span class="math inline">\(d_{[max,high]}\)</span> of points within a grid cell as</p>
-<p><span id="eq-hurdle_N"><span class="math display">\[\begin{equation}N_{ijt} \sim Poisson(λ_{ijt}×u_{ijt})+u_{ijt}\end{equation} \tag{5}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_lambda"><span class="math display">\[\begin{equation}log(λ_{ijt})=α_{it}+ε_{jt}\end{equation} \tag{6}\]</span></span></p>
+<p><span id="eq-hurdle_N"><span class="math display">\[N_{ijt} \sim Poisson(λ_{ijt}×u_{ijt})+u_{ijt} \tag{5}\]</span></span></p>
+<p><span id="eq-hurdle_lambda"><span class="math display">\[log(λ_{ijt})=α_{it}+ε_{jt} \tag{6}\]</span></span></p>
 <p>where <span class="math inline">\(α_{it}\)</span> and <span class="math inline">\(ε_{jt}\)</span> are stratum- and grid-cell-specific random effects, respectively, and <span class="math inline">\(α_{it}\)</span> is also subject to a fixed effect of year:</p>
-<p><span id="eq-hurdle_alpha"><span class="math display">\[\begin{equation}α_{it} \sim Normal(μ_{[α],t},SD_{[α],t}^{2})\end{equation} \tag{7}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_epsilon"><span class="math display">\[\begin{equation}ε_{it} \sim Normal(0,SD_{[ε]}^{2}).\end{equation} \tag{8}\]</span></span></p>
+<p><span id="eq-hurdle_alpha"><span class="math display">\[α_{it} \sim Normal(μ_{[α],t},SD_{[α],t}^{2}) \tag{7}\]</span></span></p>
+<p><span id="eq-hurdle_epsilon"><span class="math display">\[ε_{it} \sim Normal(0,SD_{[ε]}^{2}). \tag{8}\]</span></span></p>
 <p>We derive density, D, as</p>
-<p><span id="eq-hurdle_D"><span class="math display">\[\begin{equation}D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}},\end{equation} \tag{9}\]</span></span></p>
+<p><span id="eq-hurdle_D"><span class="math display">\[D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}}, \tag{9}\]</span></span></p>
 <p>where <span class="math inline">\(K×∑_{d=1}^{d_{[max]}}A_{d}\)</span> is the effective area (<span class="math inline">\(km^{2}\)</span>) of estimation for a grid cell and <span class="math inline">\(s\)</span> is the mean cluster size for independent detections, which is sampled from the distribution</p>
-<p><span id="eq-hurdle_s"><span class="math display">\[\begin{equation}s \sim Gamma(k,v)+1,\end{equation} \tag{10}\]</span></span></p>
+<p><span id="eq-hurdle_s"><span class="math display">\[sim Gamma(k,v)+1, \tag{10}\]</span></span></p>
 <p>where k and v are derived from the mean and variance of observed cluster sizes. We subtract 1 from the mean when calculating k and v and add 1 to the random variable to ensure cluster sizes were <span class="math inline">\(&gt;1\)</span>. We derive stratum-level density estimates by averaging all <span class="math inline">\(D_{ijt}\)</span> within each stratum, and we take the area-weighted average of strata estimates to obtain superstrata density and occupancy estimates.</p>
 <p><strong><em>Observation process</em></strong></p>
 <p>We model the sum of observed counts (of independent clusters of individuals) across all points surveyed within a grid cell (<span class="math inline">\(n_{ijtl}\)</span>) and the number of points where the species was detected (<span class="math inline">\(y_{ijtl}\)</span>) as</p>
-<p><span id="eq-hurdle_n"><span class="math display">\[\begin{equation}n_{ijtl} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),\end{equation} \tag{11}\]</span></span></p>
-<p><span id="eq-hurdle_y"><span class="math display">\[\begin{equation}y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr)\end{equation},~\mathrm{and} \tag{12}\]</span></span></p>
-<p><span id="eq-hurdle_p_s"><span class="math display">\[\begin{equation}p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}\end{equation}, \tag{13}\]</span></span></p>
+<p><span id="eq-hurdle_n"><span class="math display">\[n_{ijtl} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr), \tag{11}\]</span></span></p>
+<p><span id="eq-hurdle_y"><span class="math display">\[y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),~\mathrm{and} \tag{12}\]</span></span></p>
+<p><span id="eq-hurdle_p_s"><span class="math display">\[p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}, \tag{13}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[a],tl}\)</span> is a year- and BCR-specific availability component of detection probability, <span class="math inline">\(p_{[p],t}\)</span> is a year-specific perceptibility component of detection probability, <span class="math inline">\(K_{[s],ijt}⁄K\)</span> is survey effort, and <span class="math inline">\(p_{[s],tl}\)</span> is the probability of detecting the species at an occupied point. Detection components summarize probability vectors,</p>
-<p><span id="eq-hurdle_p_a"><span class="math display">\[\begin{equation}p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}} \end{equation} \tag{14}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_p_p"><span class="math display">\[\begin{equation}p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}} \end{equation}, \tag{15}\]</span></span></p>
+<p><span id="eq-hurdle_p_a"><span class="math display">\[p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}} \tag{14}\]</span></span></p>
+<p><span id="eq-hurdle_p_p"><span class="math display">\[p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}}, \tag{15}\]</span></span></p>
 <p>consisting of multinomial cell probabilities for</p>
-<p><span id="eq-hurdle_pi_a"><span class="math display">\[\begin{equation}\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)\end{equation} \tag{16}\]</span></span></p>
-<center>
-and
-</center>
-<p><span id="eq-hurdle_pi_p"><span class="math display">\[\begin{equation}\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr)\end{equation}, \tag{17}\]</span></span></p>
+<p><span id="eq-hurdle_pi_a"><span class="math display">\[\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr) \tag{16}\]</span></span></p>
+<p><span id="eq-hurdle_pi_p"><span class="math display">\[\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr), \tag{17}\]</span></span></p>
 <p>where <span class="math inline">\(\mathbf{y_{[a],ijtl}}\)</span> and <span class="math inline">\(\mathbf{y_{[p],ijt}}\)</span> are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period, <span id="eq-hurdle_pi_a_cell"><span class="math display">\[\begin{equation}π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1}\end{equation}, \tag{18}\]</span></span> and are scaled to sum to 1,</p>
-<p><span id="eq-hurdle_pi_a_cell_c"><span class="math display">\[\begin{equation}π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl} \end{equation}, \tag{19}\]</span></span></p>
+<p><span id="eq-hurdle_pi_a_cell_c"><span class="math display">\[π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl}, \tag{19}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[ar],tl}\)</span> is the availability for a single 2-min time removal bin. Surveys in 2008-2009 were 5 min instead of 6 min in length, so for these years, we calculate the availability for a 1-min interval, <span class="math inline">\(p_{[a1],tl}=1-\biggl((1-p_{[ar],tl})^3\biggr)^{1/6}\)</span>, and then calculate the unscaled cell probability for the third (1 min) period as <span class="math inline">\(π_{[a],(t≤2)(r=3)l}=p_{[a1],tl}×(1-p_{[ar],tl})^{r-1}\)</span>. Cell probabilities for perceptibility account for area of bins with increasing distance:</p>
-<p><span id="eq-hurdle_pi_p_cell"><span class="math display">\[\begin{equation}π_{[p],td}=\frac{p_{[pd],td}A_d}{∑_{d=1}^{d_{[max]}}A_d}\end{equation},~\mathrm{and} \tag{20}\]</span></span></p>
-<p><span id="eq-hurdle_pi_p_cell_c"><span class="math display">\[\begin{equation}π_{[p],td}^{[c]}=π_{[p],td}⁄p_{[p],t}\end{equation}, \tag{21}\]</span></span></p>
+<p><span id="eq-hurdle_pi_p_cell"><span class="math display">\[π_{[p],td}=\frac{p_{[pd],td}A_d}{∑_{d=1}^{d_{[max]}}A_d},~\mathrm{and} \tag{20}\]</span></span></p>
+<p><span id="eq-hurdle_pi_p_cell_c"><span class="math display">\[π_{[p],td}^{[c]}=π_{[p],td}⁄p_{[p],t}, \tag{21}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[pd],td}\)</span> is the perceptibility within distance bin <span class="math inline">\(d\)</span> in year <span class="math inline">\(t\)</span>, and <span class="math inline">\(A_d\)</span> is the area of distance bin <span class="math inline">\(d\)</span>. We model <span class="math inline">\(p_{[pd],td}\)</span> using one of four possible perceptibility models: 1) a half-normal constant model, 2) a hazard rate constant model, 3) a half-normal year model, and 4) a hazard rate year model. For half-normal functions, we calculated $p_{[pd],td} for each distance class as:</p>
-<p><span id="eq-hurdle_p_pd_HN"><span class="math display">\[\begin{equation}p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d} \end{equation}, \tag{22}\]</span></span></p>
+<p><span id="eq-hurdle_p_pd_HN"><span class="math display">\[p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d}, \tag{22}\]</span></span></p>
 <p>where <span class="math inline">\(d_{[low]}\)</span> and <span class="math inline">\(d_{[high]}\)</span> are the bounds for distance bin <span class="math inline">\(d\)</span> and <span class="math inline">\(σ_t\)</span> is the half-normal shape parameter. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated <span class="math inline">\(p_{[pd],td}\)</span> at the midpoint, <span class="math inline">\(d_{[mid]}\)</span>, of each distance class:</p>
-<p><span id="eq-hurdle_p_pd_HZ"><span class="math display">\[\begin{equation}p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr)\end{equation}, \tag{23}\]</span></span></p>
-<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models <span class="math inline">\(\eqref{#eq:hurdle_p_pd_HN}\)</span> and <span class="math inline">\(\@eqref{#eq:hurdle_p_pd_HZ}\)</span>, we draw year-specific shape parameters from hyperdistributions:</p>
+<p><span id="eq-hurdle_p_pd_HZ"><span class="math display">\[p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr), \tag{23}\]</span></span></p>
+<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models <a href="#eq-hurdle_p_pd_HN">Equation&nbsp;22</a> and <a href="#eq-hurdle_p_pd_HZ">Equation&nbsp;23</a>, we draw year-specific shape parameters from hyperdistributions:</p>
 <p>………………………………………………………………………………………………..</p>
 <p>The number of independent clusters of individuals, <span class="math inline">\(N\)</span>, of a given species at point count location <span class="math inline">\(k\)</span> in grid <span class="math inline">\(j\)</span>, stratum <span class="math inline">\(i\)</span>, and year <span class="math inline">\(t\)</span> came from a Poisson distribution</p>
 <p><span class="math display">\[N_{ijkt}\sim Poisson(λ_{ijt}×z_{ijkt})\]</span></p>
@@ -243,23 +224,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -324,92 +291,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
