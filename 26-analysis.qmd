@@ -27,17 +27,23 @@ $m$ – posterior samples
 
 ### Hurdle model
 
+For most species, we modeled abundance and occupancy using a unified hurdle model. The "hurdle" refers to the point-level portion of the state process whereby we assume at least one individual present at each occupied point, and we model the number of additional individuals present over and above the first. Thus, with a hurdle structure zeros can only arise from the occupancy portion of the model, in contrast with zero inflation wherein zeros can arise from either the occupancy or abundance sub-models. By removing the ambiguity of how zeros arise, the hurdle model allows us to more clearly quantify point-level occupancy distinctly from abundance using the same model. Because abundance and occupancy models largely represent subsets of the sub-models contained in the hurdle model, we first describe the hurdle model in complete detail, and then more briefly describe the abundance and occupancy models, focusing on how the latter differ from the former.
+
 ***State process***
 
 We model species occupancy of grid cells as
 
 $$z_{ijt} \sim Bernoulli(ψ_{it})$$ {#eq-hurdle_z}
 
-$$logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2})$$ {#eq-hurdle_psi}
+<center>and</center>
+
+$$logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2}),$$ {#eq-hurdle_psi}
 
 where $ψ_{it}$ is the probability of species occupancy of a grid cell in stratum $i$ in year $t$, $z_{ijt}$ is the latent occupancy state of grid cell $j$ in stratum $i$ during year $t$, and $μ_{[ψ],t}$ and $SD_{[ψ],t}^{2}$ are year-specific mean and variance hyper-parameters. We exclude data for all strata in which the species was never detected (effectively conditioning occupancy on being within the species range). We model species occupancy of points within an occupied grid cell as
 
 $$u_{ijt}|z_{ijt} \sim Binomial(K,θ_{it}×z_{ijt})$$ {#eq-hurdle_u}
+
+<center>and</center>
 
 $$logit(θ_{it}) \sim Normal(μ_{[θ],t},SD_{[θ],t}^{2}),$$ {#eq-hurdle_theta}
 
@@ -45,11 +51,15 @@ where $θ_{it}$ is the probability of species occupancy of a point within an occ
 
 $$N_{ijt} \sim Poisson(λ_{ijt}×u_{ijt})+u_{ijt}$$ {#eq-hurdle_N}
 
-$$log(λ_{ijt})=α_{it}+ε_{jt}$$ {#eq-hurdle_lambda}
+<center>and</center>
+
+$$log(λ_{ijt})=α_{it}+ε_{jt}.$$ {#eq-hurdle_lambda}
 
 where $α_{it}$ and $ε_{jt}$ are stratum- and grid-cell-specific random effects, respectively, and $α_{it}$ is also subject to a fixed effect of year:
 
 $$α_{it} \sim Normal(μ_{[α],t},SD_{[α],t}^{2})$$ {#eq-hurdle_alpha}
+
+<center>and</center>
 
 $$ε_{it} \sim Normal(0,SD_{[ε]}^{2}).$$ {#eq-hurdle_epsilon}
 
@@ -77,15 +87,23 @@ where $p_{[a],tl}$ is a year- and BCR-specific availability component of detecti
 
 $$p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}}$$ {#eq-hurdle_p_a}
 
+<center>and</center>
+
 $$p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}},$$ {#eq-hurdle_p_p}
 
 consisting of multinomial cell probabilities for
 
 $$\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)$$ {#eq-hurdle_pi_a}
 
+<center>and</center>
+
 $$\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr),$$ {#eq-hurdle_pi_p}
 
-where $\mathbf{y_{[a],ijtl}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period, $$\begin{equation}π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1}\end{equation},$$ {#eq-hurdle_pi_a_cell} and are scaled to sum to 1,
+where $\mathbf{y_{[a],ijtl}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period,
+
+$$π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1},$$ {#eq-hurdle_pi_a_cell}
+
+and are scaled to sum to 1,
 
 $$π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl},$$ {#eq-hurdle_pi_a_cell_c}
 
@@ -103,149 +121,120 @@ where $d_{[low]}$ and $d_{[high]}$ are the bounds for distance bin $d$ and $σ_t
 
 $$p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr),$$ {#eq-hurdle_p_pd_HZ}
 
-where $h_t$ and $b$ are estimated parameters for the hazard function. For perceptibility models @eq-hurdle_p_pd_HN and @eq-hurdle_p_pd_HZ, we draw year-specific shape parameters from hyperdistributions:
+where $h_t$ and $b$ are estimated parameters for the hazard function. For perceptibility models (@eq-hurdle_p_pd_HN and @eq-hurdle_p_pd_HZ), we draw year-specific shape parameters from hyperdistributions:
 
-..............................................................................................................
+$$log(σ_t) \sim Normal(μ_{[σ]},SD_{[σ]}^2),$$ {#eq-hurdle_HN_sigma}
 
-The number of independent clusters of individuals, $N$, of a given species at point count location $k$ in grid $j$, stratum $i$, and year $t$ came from a Poisson distribution
+$$log(h_t) \sim Normal(μ_{[h]},SD_{[h]}^2).$$ {#eq-hurdle_HZ_h}
 
-$$N_{ijkt}\sim Poisson(λ_{ijt}×z_{ijkt})$$
+We also consider models allowing availability to vary by year and BCR:
 
-with mean $λ_{ijt}$. Abundances at all points within a grid came from a distribution with the same mean to account for the lack of independence between points, and we modeled $λ$ as a function of time to estimate trend for each stratum:
+$$logit(p_{[ar],tl}) \sim Normal(μ_{[p_{ar}]},SD_{[p_{ar}]}^2).$$ {#eq-hurdle_p_ar}
 
-$$log⁡(λ_{ijt}) = α_{i}+r_{i} (t-1)+ε_{j},$$
+Priors for annual variation in detectability components are
 
-where $α$ and $r$ are stratum-specific intercepts and trends, respectively, and $ε$ is a grid-specific random effect.
+$$μ_{[σ]} \sim Normal(4.5,1.5),$$ {#eq-hurdle_mu_sigma}
 
-To avoid predicting species occurrence outside of observed ranges, we fixed $ψ$ to 0 for all strata in which the species was never observed and used a prior informed by the observed proportion of grid-year combinations in a stratum in which the species was detected
+$$μ_{[h]} \sim Normal(4.5,1.5),$$ {#eq-hurdle_mu_h}
 
-$$logit(ψ_{i }) \sim Normal(μ_{ψ_i},σ_{ψ}^{2}),$$
+$$μ_{[p_{ar}]} \sim Normal(0,1),$$ {#eq-hurdle_mu_par}
 
-where $μ_{ψ_i}$ is the stratum-specific naïve occupancy and $σ_{ψ}^{2}$ is the annual variation in occupancy probabilities shared across strata. All other parameters had vague priors:
+<center>and</center>
 
-$$α\sim Normal(0,4),$$ $$exp⁡(r) \sim Uniform(0.25,1.75),$$
+$$SD_{[σ]},SD_{[h]},SD_{[p_{ar}]} \sim gamma(1,1).$$ {#eq-hurdle_SD_sigma_h_par}
 
-$$ε\sim Normal(0,σ_{ε}^{2}),$$
+### Abundance model
 
-and
+For species that we modeled abundance separately from occupancy, we describe here the abundance model, focusing on the model components that differed from the hurdle model.
 
-$$σ_{ε}^{2}\sim Uniform(0,5).$$
+***State process***
 
-We derived density, $D$, at the point count location as
+We model species occupancy of grid cells in the same manner as for the hurdle model (@eq-hurdle_z and @eq-hurdle_psi). Because we model occupancy separately (see **Occupancy model** below), we omit @eq-hurdle_u and @eq-hurdle_theta from the abundance model. Without point occupancy, we model abundance at occupied grid cells (in contrast with @eq-hurdle_N) more simply as
 
-$$D_{ijkt} = \frac {(N_{ijkt}×s)}{A_{c}} ,$$
+$$N_{ijt} \sim Poisson(λ_{ijt}×z_{ijt}),$$ {#eq-abundance_N}
 
-where $A_{c}$ is the area of the point count circle (see Observation process section below) and s is the cluster size, which was sampled from the distribution
+with variability among strata and grid cells modeled the same (@eq-hurdle_lambda, @eq-hurdle_alpha, and @eq-hurdle_epsilon). Derivation of density, D, also does not change (@eq-hurdle_D, @eq-hurdle_s).
 
-$$s\sim Gamma(k,θ)+1,$$
+***Observation process***
 
-where $k$ and $θ$ were derived from the mean and variance of observed cluster sizes. We subtracted 1 from the mean when calculating $k$ and $θ$ and added 1 to the random variable to ensure cluster sizes were $\ge$ 1. We derived stratum-level density estimates by averaging all point-level density estimates within each stratum, and we took the area-weighted average of strata estimates to obtain superstrata estimates. We required a minimum of 30 detections across the IMBCR effort to estimate density for each species.
+We model the sum of observed counts in the same manner as the hurdle model (@eq-hurdle_n), but we omit observation models for point occupancy (i.e., omit @eq-hurdle_y and @eq-hurdle_p_s). The remaining observation sub-models exactly match those of the hurdle model (@eq-hurdle_p_a - @eq-hurdle_SD_sigma_h_par).
 
-**Observation process**
+### Occupancy model
 
-We estimated the probability of detecting an independent cluster of individuals by fitting distance functions to the distance data collected during surveys (Buckland et al. 2001). We fit four detection models including: 1. half-normal constant $(HN(.))$\
-2. hazard rate constant $(Haz(.))$\
-3. half-normal year $(HN(t))$\
-4. hazard rate year $(Haz(t))$.
+For species that we modeled occupancy separately from abundance, we describe here the occupancy model, focusing on the model components that differed from the hurdle model.
 
-We removed the furthest 10% of observed detection distances from the data set and binned the remaining detections into 10 evenly spaced distance classes. For half-normal functions, we calculated the detection probability, $p$, for each distance class, l, as:
+***State process***
 
-$$p_{l} = \frac {(2π∫_{c=b_{l}}^{c=b_{l+1}}exp⁡(-(\frac {c^2}{2θ^2} ))c dc)}{A_l}$$
+We model species occupancy of grid cells and points in the same manner as for the hurdle model (@eq-hurdle_z - @eq-hurdle_theta). The remainder of the ecological portion of the hurdle model (@eq-hurdle_N - @eq-hurdle_s) are ommitted from the occupancy model.
 
-where $b_{l}$ and $b_{l+1}$ are the cutpoints for $l$, $θ$ is the half-normal shape parameter, and $A_{l}$ is the area of $l$. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated $p$ at the midpoint, $m$, of each distance class
+***Observation process***
 
-$$p_{l} = 1-exp⁡ (-(\frac{ m_{l}}{a})^{b} )$$\*
+We model species detections at points using
 
-To allow detection probabilities to vary by year, we sampled year-specific shape parameters from hyperdistributions:
+$$y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-occupancy_y}
 
-$$θ_{t}\sim Normal(μ_{θ},σ_{θ}^{2} ),$$
+with $p_{tl}$ here being equivalent to $p_{[s],tl}$ in @eq-hurdle_y. Overall species detectability for a point survey, $p_{tl}$, summarizes the probability vector
 
-$$a_{t}\sim Normal(μ_{a},σ_{a}^{2} ),$$
+$$p_{tl}=∑_{r=1}^{R} \mathbf{π_{[R],tl}^{[c]}}$$ {#eq-occupancy_p}
 
-and
+consisting of multinomial cell probabilities for
 
-$$b_{t}\sim Normal(μ_{b},σ_{b}^{2} ),$$
+$$\mathbf{y_{[R],ijtl}} \sim Multinomial \biggl(y_{ijtl}, \mathbf{π_{[R],tl}^{[c]}} \biggr),$$ {#eq-occupancy_y_R}
 
-with priors of
+where $\mathbf{y_{[R],ijtl}}$ is a vector of representing the frequency of points where the species was detected across time removal bins when first detected. Cell probabilities for the time removal model assume constant detectability across the survey period,
 
-$$μ_{θ}\sim Unif(0,1000),$$ $$μ_{a}\sim Unif(0,500),$$
+$$π_{[R],trl}=p_{[R],tl} (1-p_{[R],tl})^{r-1},$$ {#eq-occupancy_pi_R}
 
-$$σ_{θ},σ_{a},μ_{b}\sim Unif(0,100),$$
+and are scaled to sum to 1,
 
-and
+$$π_{[R],trl}^{[c]}=π_{[R],trl}⁄p_{tl},$$ {#eq-occupancy_pi_R_c}
 
-$$σ_{b}\sim Unif(0,25).$$
+where $p_{[R],tl}$ is species detectability for a single 2-min time removal bin. We model variability in species detectability here ($p_{[R],tl}$) in the same manner as the availability component of the hurdle model ($p_{[ar]}$ in @eq-hurdle_p_ar, @eq-hurdle_mu_par, and @eq-hurdle_SD_sigma_h_par), including the shorter 5-min survey period in 2008-2009 (see explanation following @eq-hurdle_pi_a_cell_c).
 
-We then multiplied p_l by the proportional area of l to account for the probability that a cluster is within distance class l and obtain π_l, the probability a cluster is present within distance class l and is detected,
+### Trend estimation
 
-$$π_{lt} = \frac {p_{lt} A_{l}}{∑_{l=1}^{L}A_{l}}.$$
+### Plot size
 
-We calculated the overall capture probability, $p_{cap}$, as
+<!--I'm not sure if all of this information should be here or if some would be better placed in the main text. Feel free to move things around, Jessie.-->
 
-$$p_{cap} = ∑_{l=1}^{L}π_{l} ,$$
+Following established practice for distance sampling data (Buckland et al. 2001:15, 151), we truncated detections for each species beyond the 90% quantile of recorded distances from the surveyor. The purpose of this practice is to improve the fit of the perceptibility curve by minimizing the influence of outliers on estimation (e.g., $p_{[p],tl}$ in @eq-hurdle_p_p). In our unified framework, truncation sets the plot size for estimation of density and occupancy. Because density is abundance scaled by area, interpretation of density does not depend on plot size, but interpretation of occupancy requires consideration of plot size depending on desired interpretation.
 
-and modeled the number of detections in each distance class at each point count location in year $t$ as
+Occupancy describes the proportion of plots where at least one member of the species occurs (i.e., presence-absence of the species). As such, occupancy can be multipled by stratum area to estimate the area occupied, and plot size is the resolution for this quantity. For species with a plot size \< 125m radius (i.e., the maximum plot size whereby neighboring plots within a grid cell do not overlap), estimation of area occupied is readily interpretable as the species range within the stratum. For plot sizes \> 125m radius, neighboring plots can overlap, so a single individual can potentially occupy \> 1 plot. Thus, for species with plot radii \> 125m, area occupied is less readily interpretable as the species range and instead more clearly quantifies space use (Latif et al. 2016). Because of the difference in plot size among species, occupancy estimates are not entirely comparable across species. Nevertheless, large differences in occupancy should be ecologically meaningful. Moreover, application of estimates for quantifying the proportion or area of a stratum occupied would be comparable across species with plot sizes \< 125m radius and roughly comparable across species with larger plot sizes. Trends in occupancy will also be comparable across species regardless of plot size. Additionally, trends in occupancy can be more clearly interpretable as changes in species range regardless of plot size, whereas trends in abundance may primarily reflect changes in population size. <!-- Would be nice to tag and hyperlink references. -->
 
-$$y_{ijkt}\sim Multinom(π_{t},N_{ijkt} ).$$
+### Selection from alternative model structures
 
-***Detection model selection***
+For each species, we considered a series of alternative model structures in order to balance model fit, complexity, and computational efficiency. Reflecting the estimation objectives for the analysis, the ecological component of all models shared the same structure, but varied in complexity of the observation process model. Because accounting for heterogeneity in bird observability is critical for accurate population estimation, we aimed to fit maximally complex observation models supported by the data. Moreover, because corrections to count data generated from distance sampling are relatively robust to heterogeneity (see pooling robustness in BUckland et al. 2001:41-42), we prioritized allowing heterogeneity in availability over perceptibility.
 
-To find the most parsimonious detection function while minimizing computing time, we fit detection-only models to the distance data, using the four model structures described above. We used the Watanabe-Akaike Information Criterion (WAIC; Watanabe 2010, Hooten and Hobbs 2015) to select the most parsimonious detection structure and then used that structure for detection probabilities in the full model to estimate density and abundance.
+We first considered two potential functions for describing the decline in perceptibility of birds with distance from the surveyor: a half-normal model and a hazard model. We preliminarily fitted detection-only versions of these models to the raw distance data (i.e., distances not indexed by sampling unit or year). We used the Watanabe-Akaike Information Criterion (WAIC; Watanabe 2010, Hooten and Hobbs 2015) to select the most parsimonious perceptibility functional form and then retained that function for each species for modeling distance-based perceptibility in the primary analysis.
 
-***Superstratum trends***
+For primary analysis of data for each species, we first considered the maximally complex hurdle model (hereafter global hurdle model), which included annual variation in both perceptibility and availability, and variability in availability among Bird Conservation Regions (@eq-eq-hurdle_HN_sigma - @eq-hurdle_p_ar). If the global hurdle model did not converge after a specified number of attempts (for details on model fitting, convergence, and MCMC sampling criteria, see **Automated Analysis** below), we then considered a constant perceptibility hurdle model, which replaced either @eq-hurdle_HN_sigma and @eq-hurdle_mu_sigma or @eq-hurdle_HZ_h and @eq-hurdle_mu_h with
 
-We developed a post-hoc approach to estimate trends for superstrata. Using the rolled-up estimates of density for superstratum, i, we fit a general linear model (GLM) to the samples from each Bayesian iteration, m,
+$$log(σ) \sim Normal(4.5,1.5)$$ {#eq-constant_sigma}
 
-$$log⁡(\hat{D}_{itm} )\sim α_{im}+r_{im} (t-1).$$ Fitting a GLM across iterations allowed us to incorporate uncertainty in trends due to uncertainty around density estimates, but it did not account for temporal variation. To incorporate this second form of variation, we sampled a random intercept $(α_{im})$ and slope $(\tilde{r}_{im})$ for each iteration using the mean and standard error estimated using the GLM and made inference on the distribution of the resampled values,
+<center>or</center>
 
-$$\tilde{α}_{im} \sim Normal(μ_{α_{im}},SE_{α_{im}})$$
+$$log(h) \sim Normal(4.5,1.5),$$ {#eq-constant_h}
 
-and
+respectively. If a constant perceptibility model also failed to converge, we switched to a global abundance model. We allowed for simpler models (i.e., a constant-perceptiblity abundance model and constant-availability hurdle and abundance models), but we only resorted to the global abundance model for 2% of species, and did not need anything simpler to estimate abundance for any species.
 
-$$\tilde{r}_{im}\sim Normal(μ_{r_{im}},SE_{r_{im}}).$$
+<!--Need to revisit the 2% value here after the latest rerun. Also, considering the low number of species that required the abundance model, we may want to stretch out runs for the hurdle model and drop the abundance model entirely. We would then only need the occupancy model for species with too few detections to attempt the hurdle model.-->
 
-### Occupancy Estimation
-
-Occupancy estimation is most commonly used to quantify the proportion of sample units (i.e., 1 km² cells) occupied by an organism (MacKenzie et al., 2002). The application of occupancy modeling requires multiple surveys of the sample unit in space or time to estimate a detection probability (MacKenzie et al., 2006). The detection probability adjusts the proportion of sites occupied to account for species that were present but undetected (MacKenzie et al., 2002). We used a removal design (MacKenzie et al., 2006) to estimate a detection probability for each species, in which we binned minutes one and two, minutes three and four, and minutes five and six to meet the assumption of a monotonic decline in the detection rates through time. After the target species was detected at a point, we set all subsequent sampling intervals at that point to "missing data" (MacKenzie et al., 2006). We required a minimum of ≥1 detection on 10 different transects across the IMBCR effort to estimate occupancy for each species.
-
-The 16 points in each sampling unit served as spatial replicates for estimating the proportion of points occupied within the sampled sampling units. We used a Bayesian, multi-scale occupancy model (Nichols et al. 2008, Mordecai et al. 2011, Green et al. 2019) to estimate 1) the probability of detecting a species given presence ($p$), 2) the proportion of points occupied by a species given presence within sampled sampling units ($θ$) and 3) the proportion of sampling units occupied by a species ($ψ$).
-
-We truncated the data, using only detections \<125 m from the sample points, except for species in Accipitriformes, Anseriformes, Falconiformes, Galliformes, Gruiformes, Pelecaniformes, Podicepidiformes, and Suliformes for which we used the maximum observed distance for each species. Truncating the data allowed us to use bird detections over a consistent plot size and ensured that the points were independent (points were spread 250 m apart), which in turn allowed us to estimate $θ$ (the proportion of points occupied within each sampling unit) (Pavlacky Jr., Blakesley, White, Hanni, & Lukacs, 2012). The interpretation of $θ$ for species for which we used maximum distances changes from occupancy to use because point count buffers overlap, but we chose this approach to provide estimates for a larger number of species.
-
-We expected regional differences in the behavior, habitat use, and local abundance of species would correspond to regional variation in detection and the fraction of occupied points. Therefore, we estimated the proportion of sampling units occupied ($ψ$) for each stratum by estimating BCR by year specific estimates of detection ($p$) and point-level occupancy ($θ$). We fixed $p$ and $θ$ to $0$ for BCRs in which a particular species was never detected. Otherwise these parameters came from hyperdistributions,
-
-$$logit(p_{BCR,t}) \sim Normal(μ_{p_{BCR}},σ_{p}^{2})$$
-
-and
-
-$$logit(θ_{BCR,t})\sim Normal(μ_{θ_{BCR}},σ_{θ}^{2}),$$
-
-where $μ_{p}$ and $μ_{θ}$ are BCR-specific means for detection and point-level occupancy, respectively, and $σ_{p}^{2}$ and $σ_{θ}^{2}$ are the annual variances shared across BCRs.
-
-We fixed $ψ$ to 0 for all strata in which the species was never detected. Otherwise, the true occupancy state $(z_{i,t})$ of a 1-km2 grid cell, $j$, in a given year, $t$, in stratum $i$ was modeled as
-
-$$z_{ijt}\sim Bernoulli(ψ_{it})$$
-
-and
-
-$$logit(ψ_{it} )\sim Normal(μ_{ψ_i},σ_{ψ}^{2}),$$
-
-where $μ_{ψ_i}$ is the stratum-specific mean occupancy rate on the logit scale and $σ_{ψ}^{2}$ is the annual variance shared across all strata. As with density, we took an area-weighted mean of stratum-level occupancy estimates (i.e., $ψ$) to estimate superstratum-level occupancy probabilities.
-
-The true point-level occupancy state ($u$) was conditional on the grid-cell-level occupancy state (i.e., z = 1, occupied; z = 0, unoccupied), such that a point could only be occupied if the grid cell was occupied,
-
-$$u_{ijkt}\sim Bernoulli(θ_{BCR,t}×z_{ijt}).$$
-
-Finally, we modeled the observation process conditional on the point being occupied (i.e., $u$ = 1) as
-
-$$y_{ijkt}\sim Binomial(p_{BCR,t}×u_{ijkt},J_{ijkt}),$$
-
-where y_ijkt are the observation data at point $k$ in year $t$ ($y$ =1, observed; $y$ = 0, not observed) and $J_{ijkt}$ is the 2-minute interval in which the species was first detected (i.e., $J$ = 1, 1-2 minutes, $J$ = 2, 3-4 minutes, $J$ =3, 5-6 minutes or not detected).
-
-Our application of the multi-scale model was analogous to a within-season robust design (Pollock, 1982) where the two-minute intervals at each point were the secondary samples for estimating $p$ and the points were the primary samples for estimating $θ$ (Nichols et al., 2008; Pavlacky Jr. et al., 2012). We considered both $p$ and $θ$ to be nuisance variables that were important for generating unbiased estimates of $ψ$. $θ$ can be considered an availability parameter or the probability a species was present and available for sampling at the points (Nichols et al., 2008; Pavlacky Jr. et al., 2012).
+For species whose abundance was estimated with the abundance model, we also fitted occupancy models to estimate occupancy. As with abundance models, we were able to meet convergence and sampling criteria for all species with a global occupancy model that allowed detectability to vary among years and Bird Conservation Regions (as in @eq-hurdle_p_ar). Thus, although initially intended, we did not need to consider a constant detectability model.
 
 ### Automated Analysis
 
-We updated our analytical methods and are used Bayesian hierarchical models specifically designed for analysis of IMBCR data. We performed all data and output manipulation in R (R Core Team, 2022) and model fitting in JAGS (Plummer 2003, 2017) using the R package jagsUI (Kellner 2018). The R code called the raw data from the IMBCR Structured Query Language (SQL) server database and reformatted the data into a form usable with the JAGS code. We allowed the input of all data collected in a manner consistent with the IMBCR design to increase the number of detections available for estimating global detection rates for population density and site occupancy. The R code provided an automated framework for combining strata-level estimates of population density and site occupancy at multiple spatial scales, as well as estimating the standard deviations and credible intervals for the combined estimates.
+We performed all data processing, analysis, and derivation of estimates in R (R Core Team, 2023) and model fitting in Nimble (de Valpine et al. 2017, 2023). All scripts for the annual analysis are maintained in a git repository and available upon request. The R code automated combining strata-level population and trend estimates to derive superstrata estimates at multiple spatial scales, including quantification of estimation uncertainty. Additionally, we automated periodic checking of convergence and switching to alternative models in cases where more complex models failed to converge within a specified number of attempts. Model fitting with Nimble entailed sampling model parameter space with 2 independent Markov Chain Monte Carlo (MCMC) chains. For each species, the automated process began sampling with chains of length = 10000 iterations, discarding the first 5000 as burn-in and retaining every 50th sample, then checked convergence of chains using the $\hat{R}$ metric and effective sample size using $n_{effective}$ (Gelman et al. 2004). We required $\hat{R}<1.1$ and $n_{effective}\geq 30$, and continued sampling for another 10000 iterations until we either achieved these criteria or reached the maximum number of attempts, with an attempt being 10000 iterations and checks of $\hat{R}$ and $n_{effective}$ occurring after each attempt. We specified a lower max attempts for the global hurdle and abundance models and a higher max attempts for the constant-perceptibility hurdle model. Initially, these levels were 10 and 20 attempts, respectively. For subsequent analyses implemented to troubleshoot errors for some species, we set max attempts higher to 20 and 50, respectively. Going forward, we may further tune the number of attempts to balance estimation rigor with computation speed and efficiency.
 
-We fit initial models to all species with at least 30 detections for density estimation and 10 detections for occupancy estimation. For density estimation, we fit the full model after determining whether there were enough detections based on results from the detection-only model fits. In some cases for both density and occupancy estimation, it was necessary to use a less parsimonious detection structure or simplified model structure to facilitate model convergence. We currently maintain version control of the automated analysis code in the Bird Conservancy repository on www.github.com.
+### References
+
+Buckland, S. T., D. R. Anderson, K. P. Burnham, J. L. Laake, D. L. Borchers, and L. Thomas. 2001. Introduction to distance sampling: estimating abundance of biological populations. Oxford University Press, Oxford, UK.
+
+de Valpine, P., D. Turek, C.J. Paciorek, C. Anderson-Bergman, D. Temple Lang, and R. Bodik. 2017. Programming with models: writing statistical algorithms for general model structures with NIMBLE. Journal of Computational and Graphical Statistics 26: 403-413. <DOI:10.1080/10618600.2016.1172487>.
+
+de Valpine P, Paciorek C, Turek D, Michaud N, Anderson-Bergman C, Obermeyer F, Wehrhahn Cortes C, Rodrìguez A, Temple Lang D, Paganin S (2023). *NIMBLE User Manual*. doi:10.5281/zenodo.1211190 <https://doi.org/10.5281/zenodo.1211190>, R package manual version 1.0.1, <https://r-nimble.org>.
+
+Gelman, A., J. B. Carlin, H. S. Stern, and D. B. Rubin. 2004. Bayesian data analysis. Chapman and Hall/CRC, Boca Raton, Florida, USA.
+
+Latif, Q. S., M. M. Ellis, and C. L. Amundson. 2016. A broader definition of occupancy: Comment on Hayes and Monfils. The Journal of Wildlife Management 80:192-194.
+
+R Core Team (2023). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.

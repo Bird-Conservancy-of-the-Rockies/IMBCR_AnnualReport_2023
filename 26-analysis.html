@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -34,6 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="26-analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="26-analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -76,18 +77,31 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="hurdle-model" class="level3">
 <h3 class="anchored" data-anchor-id="hurdle-model">Hurdle model</h3>
+<p>For most species, we modeled abundance and occupancy using a unified hurdle model. The “hurdle” refers to the point-level portion of the state process whereby we assume at least one individual present at each occupied point, and we model the number of additional individuals present over and above the first. Thus, with a hurdle structure zeros can only arise from the occupancy portion of the model, in contrast with zero inflation wherein zeros can arise from either the occupancy or abundance sub-models. By removing the ambiguity of how zeros arise, the hurdle model allows us to more clearly quantify point-level occupancy distinctly from abundance using the same model. Because abundance and occupancy models largely represent subsets of the sub-models contained in the hurdle model, we first describe the hurdle model in complete detail, and then more briefly describe the abundance and occupancy models, focusing on how the latter differ from the former.</p>
 <p><strong><em>State process</em></strong></p>
 <p>We model species occupancy of grid cells as</p>
 <p><span id="eq-hurdle_z"><span class="math display">\[z_{ijt} \sim Bernoulli(ψ_{it}) \tag{1}\]</span></span></p>
-<p><span id="eq-hurdle_psi"><span class="math display">\[logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2}) \tag{2}\]</span></span></p>
+<center>
+and
+</center>
+<p><span id="eq-hurdle_psi"><span class="math display">\[logit(ψ_{it}) \sim Normal(μ_{[ψ],t},SD_{[ψ],t}^{2}), \tag{2}\]</span></span></p>
 <p>where <span class="math inline">\(ψ_{it}\)</span> is the probability of species occupancy of a grid cell in stratum <span class="math inline">\(i\)</span> in year <span class="math inline">\(t\)</span>, <span class="math inline">\(z_{ijt}\)</span> is the latent occupancy state of grid cell <span class="math inline">\(j\)</span> in stratum <span class="math inline">\(i\)</span> during year <span class="math inline">\(t\)</span>, and <span class="math inline">\(μ_{[ψ],t}\)</span> and <span class="math inline">\(SD_{[ψ],t}^{2}\)</span> are year-specific mean and variance hyper-parameters. We exclude data for all strata in which the species was never detected (effectively conditioning occupancy on being within the species range). We model species occupancy of points within an occupied grid cell as</p>
 <p><span id="eq-hurdle_u"><span class="math display">\[u_{ijt}|z_{ijt} \sim Binomial(K,θ_{it}×z_{ijt}) \tag{3}\]</span></span></p>
+<center>
+and
+</center>
 <p><span id="eq-hurdle_theta"><span class="math display">\[logit(θ_{it}) \sim Normal(μ_{[θ],t},SD_{[θ],t}^{2}), \tag{4}\]</span></span></p>
 <p>where <span class="math inline">\(θ_{it}\)</span> is the probability of species occupancy of a point within an occupied grid cell in stratum <span class="math inline">\(i\)</span> and year <span class="math inline">\(t\)</span>, <span class="math inline">\(u_{ijt}\)</span> is the latent occupancy state describing the number of points occupied within grid cell <span class="math inline">\(j\)</span>, stratum <span class="math inline">\(i\)</span>, and year <span class="math inline">\(t\)</span>, and <span class="math inline">\(μ_{[θ],t}\)</span> and <span class="math inline">\(SD_{[θ],t}^{2}\)</span> are year-specific mean and variance hyper-parameters. We model abundance of independent clusters of individuals within <span class="math inline">\(d_{[max,high]}\)</span> of points within a grid cell as</p>
 <p><span id="eq-hurdle_N"><span class="math display">\[N_{ijt} \sim Poisson(λ_{ijt}×u_{ijt})+u_{ijt} \tag{5}\]</span></span></p>
-<p><span id="eq-hurdle_lambda"><span class="math display">\[log(λ_{ijt})=α_{it}+ε_{jt} \tag{6}\]</span></span></p>
+<center>
+and
+</center>
+<p><span id="eq-hurdle_lambda"><span class="math display">\[log(λ_{ijt})=α_{it}+ε_{jt}. \tag{6}\]</span></span></p>
 <p>where <span class="math inline">\(α_{it}\)</span> and <span class="math inline">\(ε_{jt}\)</span> are stratum- and grid-cell-specific random effects, respectively, and <span class="math inline">\(α_{it}\)</span> is also subject to a fixed effect of year:</p>
 <p><span id="eq-hurdle_alpha"><span class="math display">\[α_{it} \sim Normal(μ_{[α],t},SD_{[α],t}^{2}) \tag{7}\]</span></span></p>
+<center>
+and
+</center>
 <p><span id="eq-hurdle_epsilon"><span class="math display">\[ε_{it} \sim Normal(0,SD_{[ε]}^{2}). \tag{8}\]</span></span></p>
 <p>We derive density, D, as</p>
 <p><span id="eq-hurdle_D"><span class="math display">\[D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}}, \tag{9}\]</span></span></p>
@@ -101,11 +115,19 @@ ul.task-list li input[type="checkbox"] {
 <p><span id="eq-hurdle_p_s"><span class="math display">\[p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}, \tag{13}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[a],tl}\)</span> is a year- and BCR-specific availability component of detection probability, <span class="math inline">\(p_{[p],t}\)</span> is a year-specific perceptibility component of detection probability, <span class="math inline">\(K_{[s],ijt}⁄K\)</span> is survey effort, and <span class="math inline">\(p_{[s],tl}\)</span> is the probability of detecting the species at an occupied point. Detection components summarize probability vectors,</p>
 <p><span id="eq-hurdle_p_a"><span class="math display">\[p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}} \tag{14}\]</span></span></p>
+<center>
+and
+</center>
 <p><span id="eq-hurdle_p_p"><span class="math display">\[p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}}, \tag{15}\]</span></span></p>
 <p>consisting of multinomial cell probabilities for</p>
 <p><span id="eq-hurdle_pi_a"><span class="math display">\[\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr) \tag{16}\]</span></span></p>
+<center>
+and
+</center>
 <p><span id="eq-hurdle_pi_p"><span class="math display">\[\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr), \tag{17}\]</span></span></p>
-<p>where <span class="math inline">\(\mathbf{y_{[a],ijtl}}\)</span> and <span class="math inline">\(\mathbf{y_{[p],ijt}}\)</span> are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period, <span id="eq-hurdle_pi_a_cell"><span class="math display">\[\begin{equation}π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1}\end{equation}, \tag{18}\]</span></span> and are scaled to sum to 1,</p>
+<p>where <span class="math inline">\(\mathbf{y_{[a],ijtl}}\)</span> and <span class="math inline">\(\mathbf{y_{[p],ijt}}\)</span> are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period,</p>
+<p><span id="eq-hurdle_pi_a_cell"><span class="math display">\[π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1}, \tag{18}\]</span></span></p>
+<p>and are scaled to sum to 1,</p>
 <p><span id="eq-hurdle_pi_a_cell_c"><span class="math display">\[π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl}, \tag{19}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[ar],tl}\)</span> is the availability for a single 2-min time removal bin. Surveys in 2008-2009 were 5 min instead of 6 min in length, so for these years, we calculate the availability for a 1-min interval, <span class="math inline">\(p_{[a1],tl}=1-\biggl((1-p_{[ar],tl})^3\biggr)^{1/6}\)</span>, and then calculate the unscaled cell probability for the third (1 min) period as <span class="math inline">\(π_{[a],(t≤2)(r=3)l}=p_{[a1],tl}×(1-p_{[ar],tl})^{r-1}\)</span>. Cell probabilities for perceptibility account for area of bins with increasing distance:</p>
 <p><span id="eq-hurdle_pi_p_cell"><span class="math display">\[π_{[p],td}=\frac{p_{[pd],td}A_d}{∑_{d=1}^{d_{[max]}}A_d},~\mathrm{and} \tag{20}\]</span></span></p>
@@ -114,58 +136,59 @@ ul.task-list li input[type="checkbox"] {
 <p><span id="eq-hurdle_p_pd_HN"><span class="math display">\[p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d}, \tag{22}\]</span></span></p>
 <p>where <span class="math inline">\(d_{[low]}\)</span> and <span class="math inline">\(d_{[high]}\)</span> are the bounds for distance bin <span class="math inline">\(d\)</span> and <span class="math inline">\(σ_t\)</span> is the half-normal shape parameter. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated <span class="math inline">\(p_{[pd],td}\)</span> at the midpoint, <span class="math inline">\(d_{[mid]}\)</span>, of each distance class:</p>
 <p><span id="eq-hurdle_p_pd_HZ"><span class="math display">\[p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr), \tag{23}\]</span></span></p>
-<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models <a href="#eq-hurdle_p_pd_HN">Equation&nbsp;22</a> and <a href="#eq-hurdle_p_pd_HZ">Equation&nbsp;23</a>, we draw year-specific shape parameters from hyperdistributions:</p>
-<p>………………………………………………………………………………………………..</p>
-<p>The number of independent clusters of individuals, <span class="math inline">\(N\)</span>, of a given species at point count location <span class="math inline">\(k\)</span> in grid <span class="math inline">\(j\)</span>, stratum <span class="math inline">\(i\)</span>, and year <span class="math inline">\(t\)</span> came from a Poisson distribution</p>
-<p><span class="math display">\[N_{ijkt}\sim Poisson(λ_{ijt}×z_{ijkt})\]</span></p>
-<p>with mean <span class="math inline">\(λ_{ijt}\)</span>. Abundances at all points within a grid came from a distribution with the same mean to account for the lack of independence between points, and we modeled <span class="math inline">\(λ\)</span> as a function of time to estimate trend for each stratum:</p>
-<p><span class="math display">\[log⁡(λ_{ijt}) = α_{i}+r_{i} (t-1)+ε_{j},\]</span></p>
-<p>where <span class="math inline">\(α\)</span> and <span class="math inline">\(r\)</span> are stratum-specific intercepts and trends, respectively, and <span class="math inline">\(ε\)</span> is a grid-specific random effect.</p>
-<p>To avoid predicting species occurrence outside of observed ranges, we fixed <span class="math inline">\(ψ\)</span> to 0 for all strata in which the species was never observed and used a prior informed by the observed proportion of grid-year combinations in a stratum in which the species was detected</p>
-<p><span class="math display">\[logit(ψ_{i }) \sim Normal(μ_{ψ_i},σ_{ψ}^{2}),\]</span></p>
-<p>where <span class="math inline">\(μ_{ψ_i}\)</span> is the stratum-specific naïve occupancy and <span class="math inline">\(σ_{ψ}^{2}\)</span> is the annual variation in occupancy probabilities shared across strata. All other parameters had vague priors:</p>
-<p><span class="math display">\[α\sim Normal(0,4),\]</span> <span class="math display">\[exp⁡(r) \sim Uniform(0.25,1.75),\]</span></p>
-<p><span class="math display">\[ε\sim Normal(0,σ_{ε}^{2}),\]</span></p>
-<p>and</p>
-<p><span class="math display">\[σ_{ε}^{2}\sim Uniform(0,5).\]</span></p>
-<p>We derived density, <span class="math inline">\(D\)</span>, at the point count location as</p>
-<p><span class="math display">\[D_{ijkt} = \frac {(N_{ijkt}×s)}{A_{c}} ,\]</span></p>
-<p>where <span class="math inline">\(A_{c}\)</span> is the area of the point count circle (see Observation process section below) and s is the cluster size, which was sampled from the distribution</p>
-<p><span class="math display">\[s\sim Gamma(k,θ)+1,\]</span></p>
-<p>where <span class="math inline">\(k\)</span> and <span class="math inline">\(θ\)</span> were derived from the mean and variance of observed cluster sizes. We subtracted 1 from the mean when calculating <span class="math inline">\(k\)</span> and <span class="math inline">\(θ\)</span> and added 1 to the random variable to ensure cluster sizes were <span class="math inline">\(\ge\)</span> 1. We derived stratum-level density estimates by averaging all point-level density estimates within each stratum, and we took the area-weighted average of strata estimates to obtain superstrata estimates. We required a minimum of 30 detections across the IMBCR effort to estimate density for each species.</p>
-<p><strong>Observation process</strong></p>
-<p>We estimated the probability of detecting an independent cluster of individuals by fitting distance functions to the distance data collected during surveys (Buckland et al.&nbsp;2001). We fit four detection models including: 1. half-normal constant <span class="math inline">\((HN(.))\)</span><br>
-2. hazard rate constant <span class="math inline">\((Haz(.))\)</span><br>
-3. half-normal year <span class="math inline">\((HN(t))\)</span><br>
-4. hazard rate year <span class="math inline">\((Haz(t))\)</span>.</p>
-<p>We removed the furthest 10% of observed detection distances from the data set and binned the remaining detections into 10 evenly spaced distance classes. For half-normal functions, we calculated the detection probability, <span class="math inline">\(p\)</span>, for each distance class, l, as:</p>
-<p><span class="math display">\[p_{l} = \frac {(2π∫_{c=b_{l}}^{c=b_{l+1}}exp⁡(-(\frac {c^2}{2θ^2} ))c dc)}{A_l}\]</span></p>
-<p>where <span class="math inline">\(b_{l}\)</span> and <span class="math inline">\(b_{l+1}\)</span> are the cutpoints for <span class="math inline">\(l\)</span>, <span class="math inline">\(θ\)</span> is the half-normal shape parameter, and <span class="math inline">\(A_{l}\)</span> is the area of <span class="math inline">\(l\)</span>. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated <span class="math inline">\(p\)</span> at the midpoint, <span class="math inline">\(m\)</span>, of each distance class</p>
-<p><span class="math display">\[p_{l} = 1-exp⁡ (-(\frac{ m_{l}}{a})^{b} )\]</span>*</p>
-<p>To allow detection probabilities to vary by year, we sampled year-specific shape parameters from hyperdistributions:</p>
-<p><span class="math display">\[θ_{t}\sim Normal(μ_{θ},σ_{θ}^{2} ),\]</span></p>
-<p><span class="math display">\[a_{t}\sim Normal(μ_{a},σ_{a}^{2} ),\]</span></p>
-<p>and</p>
-<p><span class="math display">\[b_{t}\sim Normal(μ_{b},σ_{b}^{2} ),\]</span></p>
-<p>with priors of</p>
-<p><span class="math display">\[μ_{θ}\sim Unif(0,1000),\]</span> <span class="math display">\[μ_{a}\sim Unif(0,500),\]</span></p>
-<p><span class="math display">\[σ_{θ},σ_{a},μ_{b}\sim Unif(0,100),\]</span></p>
-<p>and</p>
-<p><span class="math display">\[σ_{b}\sim Unif(0,25).\]</span></p>
-<p>We then multiplied p_l by the proportional area of l to account for the probability that a cluster is within distance class l and obtain π_l, the probability a cluster is present within distance class l and is detected,</p>
-<p><span class="math display">\[π_{lt} = \frac {p_{lt} A_{l}}{∑_{l=1}^{L}A_{l}}.\]</span></p>
-<p>We calculated the overall capture probability, <span class="math inline">\(p_{cap}\)</span>, as</p>
-<p><span class="math display">\[p_{cap} = ∑_{l=1}^{L}π_{l} ,\]</span></p>
-<p>and modeled the number of detections in each distance class at each point count location in year <span class="math inline">\(t\)</span> as</p>
-<p><span class="math display">\[y_{ijkt}\sim Multinom(π_{t},N_{ijkt} ).\]</span></p>
-<p><strong><em>Detection model selection</em></strong></p>
-<p>To find the most parsimonious detection function while minimizing computing time, we fit detection-only models to the distance data, using the four model structures described above. We used the Watanabe-Akaike Information Criterion (WAIC; Watanabe 2010, Hooten and Hobbs 2015) to select the most parsimonious detection structure and then used that structure for detection probabilities in the full model to estimate density and abundance.</p>
-<p><strong><em>Superstratum trends</em></strong></p>
-<p>We developed a post-hoc approach to estimate trends for superstrata. Using the rolled-up estimates of density for superstratum, i, we fit a general linear model (GLM) to the samples from each Bayesian iteration, m,</p>
-<p><span class="math display">\[log⁡(\hat{D}_{itm} )\sim α_{im}+r_{im} (t-1).\]</span> Fitting a GLM across iterations allowed us to incorporate uncertainty in trends due to uncertainty around density estimates, but it did not account for temporal variation. To incorporate this second form of variation, we sampled a random intercept <span class="math inline">\((α_{im})\)</span> and slope <span class="math inline">\((\tilde{r}_{im})\)</span> for each iteration using the mean and standard error estimated using the GLM and made inference on the distribution of the resampled values,</p>
-<p><span class="math display">\[\tilde{α}_{im} \sim Normal(μ_{α_{im}},SE_{α_{im}})\]</span></p>
-<p>and</p>
-<p><span class="math display">\[\tilde{r}_{im}\sim Normal(μ_{r_{im}},SE_{r_{im}}).\]</span></p>
+<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models (<a href="#eq-hurdle_p_pd_HN">Equation&nbsp;22</a> and <a href="#eq-hurdle_p_pd_HZ">Equation&nbsp;23</a>), we draw year-specific shape parameters from hyperdistributions:</p>
+<p><span id="eq-hurdle_HN_sigma"><span class="math display">\[log(σ_t) \sim Normal(μ_{[σ]},SD_{[σ]}^2), \tag{24}\]</span></span></p>
+<p><span id="eq-hurdle_HZ_h"><span class="math display">\[log(h_t) \sim Normal(μ_{[h]},SD_{[h]}^2). \tag{25}\]</span></span></p>
+<p>We also consider models allowing availability to vary by year and BCR:</p>
+<p><span id="eq-hurdle_p_ar"><span class="math display">\[logit(p_{[ar],tl}) \sim Normal(μ_{[p_{ar}]},SD_{[p_{ar}]}^2). \tag{26}\]</span></span></p>
+<p>Priors for annual variation in detectability components are</p>
+<p><span id="eq-hurdle_mu_sigma"><span class="math display">\[μ_{[σ]} \sim Normal(4.5,1.5), \tag{27}\]</span></span></p>
+<p><span id="eq-hurdle_mu_h"><span class="math display">\[μ_{[h]} \sim Normal(4.5,1.5), \tag{28}\]</span></span></p>
+<p><span id="eq-hurdle_mu_par"><span class="math display">\[μ_{[p_{ar}]} \sim Normal(0,1), \tag{29}\]</span></span></p>
+<center>
+and
+</center>
+<p><span id="eq-hurdle_SD_sigma_h_par"><span class="math display">\[SD_{[σ]},SD_{[h]},SD_{[p_{ar}]} \sim gamma(1,1). \tag{30}\]</span></span></p>
+</section>
+<section id="abundance-model" class="level3">
+<h3 class="anchored" data-anchor-id="abundance-model">Abundance model</h3>
+<p>For species that we modeled abundance separately from occupancy, we describe here the abundance model, focusing on the model components that differed from the hurdle model.</p>
+<p><strong><em>State process</em></strong></p>
+<p>We model species occupancy of grid cells in the same manner as for the hurdle model (<a href="#eq-hurdle_z">Equation&nbsp;1</a> and <a href="#eq-hurdle_psi">Equation&nbsp;2</a>). Because we model occupancy separately (see <strong>Occupancy model</strong> below), we omit <a href="#eq-hurdle_u">Equation&nbsp;3</a> and <a href="#eq-hurdle_theta">Equation&nbsp;4</a> from the abundance model. Without point occupancy, we model abundance at occupied grid cells (in contrast with <a href="#eq-hurdle_N">Equation&nbsp;5</a>) more simply as</p>
+<p><span id="eq-abundance_N"><span class="math display">\[N_{ijt} \sim Poisson(λ_{ijt}×z_{ijt}), \tag{31}\]</span></span></p>
+<p>with variability among strata and grid cells modeled the same (<a href="#eq-hurdle_lambda">Equation&nbsp;6</a>, <a href="#eq-hurdle_alpha">Equation&nbsp;7</a>, and <a href="#eq-hurdle_epsilon">Equation&nbsp;8</a>). Derivation of density, D, also does not change (<a href="#eq-hurdle_D">Equation&nbsp;9</a>, <a href="#eq-hurdle_s">Equation&nbsp;10</a>).</p>
+<p><strong><em>Observation process</em></strong></p>
+<p>We model the sum of observed counts in the same manner as the hurdle model (<a href="#eq-hurdle_n">Equation&nbsp;11</a>), but we omit observation models for point occupancy (i.e., omit <a href="#eq-hurdle_y">Equation&nbsp;12</a> and <a href="#eq-hurdle_p_s">Equation&nbsp;13</a>). The remaining observation sub-models exactly match those of the hurdle model (<a href="#eq-hurdle_p_a">Equation&nbsp;14</a> - <a href="#eq-hurdle_SD_sigma_h_par">Equation&nbsp;30</a>).</p>
+</section>
+<section id="occupancy-model" class="level3">
+<h3 class="anchored" data-anchor-id="occupancy-model">Occupancy model</h3>
+<p>For species that we modeled occupancy separately from abundance, we describe here the occupancy model, focusing on the model components that differed from the hurdle model.</p>
+<p><strong><em>State process</em></strong></p>
+<p>We model species occupancy of grid cells and points in the same manner as for the hurdle model (<a href="#eq-hurdle_z">Equation&nbsp;1</a> - <a href="#eq-hurdle_theta">Equation&nbsp;4</a>). The remainder of the ecological portion of the hurdle model (<a href="#eq-hurdle_N">Equation&nbsp;5</a> - <a href="#eq-hurdle_s">Equation&nbsp;10</a>) are ommitted from the occupancy model.</p>
+<p><strong><em>Observation process</em></strong></p>
+<p>We model species detections at points using</p>
+<p><span id="eq-occupancy_y"><span class="math display">\[y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr), \tag{32}\]</span></span></p>
+<p>with <span class="math inline">\(p_{tl}\)</span> here being equivalent to <span class="math inline">\(p_{[s],tl}\)</span> in <a href="#eq-hurdle_y">Equation&nbsp;12</a>. Overall species detectability for a point survey, <span class="math inline">\(p_{tl}\)</span>, summarizes the probability vector</p>
+<p><span id="eq-occupancy_p"><span class="math display">\[p_{tl}=∑_{r=1}^{R} \mathbf{π_{[R],tl}^{[c]}} \tag{33}\]</span></span></p>
+<p>consisting of multinomial cell probabilities for</p>
+<p><span id="eq-occupancy_y_R"><span class="math display">\[\mathbf{y_{[R],ijtl}} \sim Multinomial \biggl(y_{ijtl}, \mathbf{π_{[R],tl}^{[c]}} \biggr), \tag{34}\]</span></span></p>
+<p>where <span class="math inline">\(\mathbf{y_{[R],ijtl}}\)</span> is a vector of representing the frequency of points where the species was detected across time removal bins when first detected. Cell probabilities for the time removal model assume constant detectability across the survey period,</p>
+<p><span id="eq-occupancy_pi_R"><span class="math display">\[π_{[R],trl}=p_{[R],tl} (1-p_{[R],tl})^{r-1}, \tag{35}\]</span></span></p>
+<p>and are scaled to sum to 1,</p>
+<p><span id="eq-occupancy_pi_R_c"><span class="math display">\[π_{[R],trl}^{[c]}=π_{[R],trl}⁄p_{tl}, \tag{36}\]</span></span></p>
+<p>where <span class="math inline">\(p_{[R],tl}\)</span> is species detectability for a single 2-min time removal bin. We model variability in species detectability here (<span class="math inline">\(p_{[R],tl}\)</span>) in the same manner as the availability component of the hurdle model (<span class="math inline">\(p_{[ar]}\)</span> in <a href="#eq-hurdle_p_ar">Equation&nbsp;26</a>, <a href="#eq-hurdle_mu_par">Equation&nbsp;29</a>, and <a href="#eq-hurdle_SD_sigma_h_par">Equation&nbsp;30</a>), including the shorter 5-min survey period in 2008-2009 (see explanation following <a href="#eq-hurdle_pi_a_cell_c">Equation&nbsp;19</a>).</p>
+</section>
+<section id="plot-size" class="level3">
+<h3 class="anchored" data-anchor-id="plot-size">Plot size</h3>
+<p>For all models, we excluded detections for each species beyond the 90% quantile of distances recorded for that species, following Buckland et al.&nbsp;(2001). <!-- Would be nice to tag and hyperlink references. --></p>
+</section>
+<section id="perceptibility-model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="perceptibility-model-selection">Perceptibility model selection</h3>
+<p>To select from half-normal versus hazard functional forms for the perceptibility model while minimizing computing time, we will fit detection-only perceptibility models to the distance data, using the two corresponding model structures described above without year effects. We will use the Watanabe-Akaike Information Criterion (WAIC; Watanabe 2010, Hooten and Hobbs 2015) to select the most parsimonious perceptibility functional form and then use that function for modeling the observation process going forward.</p>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<p>Buckland, S. T., D. R. Anderson, K. P. Burnham, J. L. Laake, D. L. Borchers, and L. Thomas. 2001. Introduction to distance sampling: estimating abundance of biological populations. Oxford University Press, Oxford, UK. ………………………………………………………………………………………………..</p>
 </section>
 <section id="occupancy-estimation" class="level3">
 <h3 class="anchored" data-anchor-id="occupancy-estimation">Occupancy Estimation</h3>
@@ -224,9 +247,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -291,6 +328,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
