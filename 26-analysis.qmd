@@ -193,6 +193,14 @@ where $p_{[R],tl}$ is species detectability for a single 2-min time removal bin.
 
 ### Trend estimation
 
+We derived posterior estimates of occupancy and abundance trends for any strata or superstrata for desired time periods from strata or (rolled-up) superstrata estimates of occupancy or density, respectively. For stratum or superstratum, i, we fitted a generalized linear model (GLM) to each posterior sample, m, of density or occupancy estimates:
+
+$$log(\hat{D}_{itm}) \sim α_{[D],im}+r_{[D],im}×(t-1)~\mathrm{or}$$ {#eq-trend_D}
+
+$$logit(\hat{ψ}_{itm}×\hat{θ}_{it}) \sim α_{[ψθ],im}+r_{[ψθ],im}×(t-1).$$ {#eq-trend_occ}
+
+For occupancy, we multiplied $ψ×θ$ to derive the unconditional probability of a point being occupied by the species, and then derived trends. To correctly propagate GLM estimation uncertainty, we sampled a random intercept $\tilde{α}_{im}$ and slope $\tilde{r}_{im}$ from the mean and standard error estimated for these parameters for each posterior sample. We then summarized across $m$ to derive the posterior estimates for $r$ and predicted $D$ and $ψ×θ$.
+
 ### Plot size
 
 <!--I'm not sure if all of this information should be here or if some would be better placed in the main text. Feel free to move things around, Jessie.-->
@@ -201,7 +209,7 @@ Following established practice for distance sampling data (Buckland et al. 2001:
 
 Occupancy describes the proportion of plots where at least one member of the species occurs (i.e., presence-absence of the species). As such, occupancy can be multipled by stratum area to estimate the area occupied, and plot size is the resolution for this quantity. For species with a plot size \< 125m radius (i.e., the maximum plot size whereby neighboring plots within a grid cell do not overlap), estimation of area occupied is readily interpretable as the species range within the stratum. For plot sizes \> 125m radius, neighboring plots can overlap, so a single individual can potentially occupy \> 1 plot. Thus, for species with plot radii \> 125m, area occupied is less readily interpretable as the species range and instead more clearly quantifies space use (Latif et al. 2016). Because of the difference in plot size among species, occupancy estimates are not entirely comparable across species. Nevertheless, large differences in occupancy should be ecologically meaningful. Moreover, application of estimates for quantifying the proportion or area of a stratum occupied would be comparable across species with plot sizes \< 125m radius and roughly comparable across species with larger plot sizes. Trends in occupancy will also be comparable across species regardless of plot size. Additionally, trends in occupancy can be more clearly interpretable as changes in species range regardless of plot size, whereas trends in abundance may primarily reflect changes in population size. <!-- Would be nice to tag and hyperlink references. -->
 
-### Selection from alternative model structures
+### Model selection
 
 For each species, we considered a series of alternative model structures in order to balance model fit, complexity, and computational efficiency. Reflecting the estimation objectives for the analysis, the ecological component of all models shared the same structure, but varied in complexity of the observation process model. Because accounting for heterogeneity in bird observability is critical for accurate population estimation, we aimed to fit maximally complex observation models supported by the data. Moreover, because corrections to count data generated from distance sampling are relatively robust to heterogeneity (see pooling robustness in BUckland et al. 2001:41-42), we prioritized allowing heterogeneity in availability over perceptibility.
 
@@ -219,7 +227,7 @@ respectively. If a constant perceptibility model also failed to converge, we swi
 
 <!--Need to revisit the 2% value here after the latest rerun. Also, considering the low number of species that required the abundance model, we may want to stretch out runs for the hurdle model and drop the abundance model entirely. We would then only need the occupancy model for species with too few detections to attempt the hurdle model.-->
 
-For species whose abundance was estimated with the abundance model, we also fitted occupancy models to estimate occupancy. As with abundance models, we were able to meet convergence and sampling criteria for all species with a global occupancy model that allowed detectability to vary among years and Bird Conservation Regions (as in @eq-hurdle_p_ar). Thus, although initially intended, we did not need to consider a constant detectability model.
+When estimating abundance with the abundance model, we estimated occupancy with occupancy models. As with abundance models, we were always able to meet convergence and sampling criteria with a global occupancy model (i.e., detectability varied among years and Bird Conservation Regions as in @eq-hurdle_p_ar), so we never needed a constant detectability model.
 
 ### Automated Analysis
 
