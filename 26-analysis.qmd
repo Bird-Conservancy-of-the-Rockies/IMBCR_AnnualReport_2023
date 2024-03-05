@@ -13,7 +13,7 @@ $j$ - grid cells with max $J$
 
 $k$ - points within a grid cell with max $K=16$, and $K_{[s]}$ is the number of points surveyed in grid cell $j$
 
-$l$ - Bird Conservation Regions with max $L$
+$l$ - Bird Conservation Regions with max $L$; note that strata are nested with Bird Conservation Regions, so an index $i$ implies indexing by $l$.
 
 $d$ - distance bins with max $d_{[max]}=10$
 
@@ -69,7 +69,7 @@ $$D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}},$$ {#eq-hurdle_D}
 
 where $K×∑_{d=1}^{d_{[max]}}A_{d}$ is the effective area ($km^{2}$) of estimation for a grid cell and $s$ is the mean cluster size for independent detections, which is sampled from the distribution
 
-$$sim Gamma(k,v)+1,$$ {#eq-hurdle_s}
+$$s\sim Gamma(k,v)+1,$$ {#eq-hurdle_s}
 
 where k and v are derived from the mean and variance of observed cluster sizes. We subtract 1 from the mean when calculating k and v and add 1 to the random variable to ensure cluster sizes were $>1$. We derive stratum-level density estimates by averaging all $D_{ijt}$ within each stratum, and we take the area-weighted average of strata estimates to obtain superstrata density and occupancy estimates.
 
@@ -77,9 +77,9 @@ where k and v are derived from the mean and variance of observed cluster sizes. 
 
 We model the sum of observed counts (of independent clusters of individuals) across all points surveyed within a grid cell ($n_{ijtl}$) and the number of points where the species was detected ($y_{ijtl}$) as
 
-$$n_{ijtl} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-hurdle_n}
+$$n_{ijt} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-hurdle_n}
 
-$$y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),~\mathrm{and}$$ {#eq-hurdle_y}
+$$y_{ijt} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),~\mathrm{and}$$ {#eq-hurdle_y}
 
 $$p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}},$$ {#eq-hurdle_p_s}
 
@@ -93,13 +93,13 @@ $$p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}},$$ {#eq-hurdle_p_p}
 
 consisting of multinomial cell probabilities for
 
-$$\mathbf{y_{[a],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)$$ {#eq-hurdle_pi_a}
+$$\mathbf{y_{[a],ijt}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)$$ {#eq-hurdle_pi_a}
 
 <center>and</center>
 
-$$\mathbf{y_{[p],ijtl}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr),$$ {#eq-hurdle_pi_p}
+$$\mathbf{y_{[p],ijt}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr),$$ {#eq-hurdle_pi_p}
 
-where $\mathbf{y_{[a],ijtl}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period,
+where $\mathbf{y_{[a],ijt}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period,
 
 $$π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1},$$ {#eq-hurdle_pi_a_cell}
 
@@ -171,7 +171,7 @@ We model species occupancy of grid cells and points in the same manner as for th
 
 We model species detections at points using
 
-$$y_{ijtl} \sim Binomial\biggl(u_{ijt},p_{tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-occupancy_y}
+$$y_{ijt} \sim Binomial\biggl(u_{ijt},p_{tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-occupancy_y}
 
 with $p_{tl}$ here being equivalent to $p_{[s],tl}$ in @eq-hurdle_y. Overall species detectability for a point survey, $p_{tl}$, summarizes the probability vector
 
@@ -179,9 +179,9 @@ $$p_{tl}=∑_{r=1}^{R} \mathbf{π_{[R],tl}^{[c]}}$$ {#eq-occupancy_p}
 
 consisting of multinomial cell probabilities for
 
-$$\mathbf{y_{[R],ijtl}} \sim Multinomial \biggl(y_{ijtl}, \mathbf{π_{[R],tl}^{[c]}} \biggr),$$ {#eq-occupancy_y_R}
+$$\mathbf{y_{[R],ijt}} \sim Multinomial \biggl(y_{ijtl}, \mathbf{π_{[R],tl}^{[c]}} \biggr),$$ {#eq-occupancy_y_R}
 
-where $\mathbf{y_{[R],ijtl}}$ is a vector of representing the frequency of points where the species was detected across time removal bins when first detected. Cell probabilities for the time removal model assume constant detectability across the survey period,
+where $\mathbf{y_{[R],ijt}}$ is a vector of representing the frequency of points where the species was detected across time removal bins when first detected. Cell probabilities for the time removal model assume constant detectability across the survey period,
 
 $$π_{[R],trl}=p_{[R],tl} (1-p_{[R],tl})^{r-1},$$ {#eq-occupancy_pi_R}
 
