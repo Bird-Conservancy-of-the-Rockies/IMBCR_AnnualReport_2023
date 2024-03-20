@@ -27,7 +27,9 @@ data <- read.csv("data/2023_annualreportdata.csv")
 
 # Bird Conservation Regions 
 
+In 2023, we had complete survey coverage across one Bird Conservation Region (@fig-bcr-17).
 
+![Survey locations and strata in the Badlands and Prairies Bird Conservation Region (BCR 17), 2023](figures/BCR17_Report_2023.png){#fig-bcr-17}
 
 ```{r, echo = FALSE, message = FALSE}
 

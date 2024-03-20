@@ -27,6 +27,10 @@ data <- read.csv("data/2023_annualreportdata.csv")
 
 # Utah 
 
+In 2023, we had complete survey coverage across the state of Utah (@fig-ut).
+
+![Survey locations and strata in Utah, 2023.](figures/UT_Report_2023.png){#fig-ut}
+
 ## Utah Statewide: Total 
 
 

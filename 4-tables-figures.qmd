@@ -3,6 +3,9 @@ title: "Tables and Figures"
 format: html
 prefer-html: true
 ---
+::: {.callout-note}
+Table and figure numbers begin with their respective chapter numbers.
+:::
 
 ## Tables {.unnumbered}
 
@@ -12,9 +15,7 @@ prefer-html: true
 
 ## Figures {.unnumbered}
 
-::: {.callout-note}
-Figure numbers begin with their respective chapter numbers.
-:::
+
 
 @fig-bcr-regions Bird Conservation Regions throughout North America, excluding Hawaii and Mexico.
 

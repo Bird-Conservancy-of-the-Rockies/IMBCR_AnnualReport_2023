@@ -22,7 +22,7 @@ summary <- read.csv("data/results-summary-2023.csv")
 
 ## `r year` Field Work {.unnumbered}
 
-In `r year`, field observers completed 1,513 of 1,557 (97%) planned surveys throughout all or portions of BCRs `r summary$bcr` using the IMBCR design (@tbl-plannedcompleted, @fig-extent). Five surveys were completed above the funded sample effort in two strata. Reasons surveys were not completed are summarized in <a href="#sec-reasons">Table 2</a>.
+In `r year`, field observers completed 1,513 of 1,557 (97%) planned surveys throughout all or portions of BCRs `r summary$bcr` using the IMBCR design (@tbl-planned-completed, @fig-extent). Five surveys were completed above the funded sample effort in two strata. Reasons surveys were not completed are summarized in <a href="#sec-reasons">Table 2</a>.
 
 Observers conducted 16,902 point counts within the 1,513 surveyed sampling units between `r summary$first` and `r summary$last`, `r year`. They detected 201,490 individual birds representing 353 species.
 

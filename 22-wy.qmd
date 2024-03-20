@@ -27,6 +27,10 @@ data <- read.csv("data/2023_annualreportdata.csv")
 
 # Wyoming 
 
+In 2023, we had complete survey coverage across the state of Wyoming (@fig-wy).
+
+![Survey locations and strata in Wyoming, 2023](figures/WY_Report_2023.png){#fig-wy}
+
 ## Wyoming Statewide: Total 
 
 

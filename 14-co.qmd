@@ -27,6 +27,10 @@ data <- read.csv("data/2023_annualreportdata.csv")
 
 # Colorado 
 
+In 2023, we had complete survey coverage across the state of Colorado (@fig-co).
+
+![Survey locations and strata in Colorado, 2023.](figures/CO_Report_2023.png){#fig-co}
+
 ## Colorado Statewide: Total 
 
 

@@ -27,6 +27,11 @@ data <- read.csv("data/2023_annualreportdata.csv")
 
 # Montana 
 
+In 2023, we had complete survey coverage across the state of Montana (@fig-mt).
+
+
+![Survey locations and strata in Montana, 2023.](figures/MT_Report_2023.png){#fig-mt}
+
 ## Montana Statewide: Total 
 
 
