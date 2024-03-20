@@ -5,15 +5,6 @@ format:
 title: "About Us"
 ---
 
-::: {.column-margin}
-
-
-<br> 
-<br>
-  
-<img src="/figures/BCR-3-teams-logo.png" width="250"/>  
-
-:::
 
 # Bird Conservancy of the Rockies {.unnumbered}
 
