@@ -1,7 +1,0 @@
----
-title: "Example"
-format: html
-bibliography: references.bib
----
-
-See @timedet.

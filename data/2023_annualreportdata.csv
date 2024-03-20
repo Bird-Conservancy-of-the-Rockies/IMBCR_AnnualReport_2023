@@ -1,0 +1,205 @@
+"","stratum","name","Year","FirstVisit","LastVisit","Strata","States","nBirdSpecies","CompletedGrids","CompletedPoints","nPriority","DensitySpeciesCount","DensityRobustCV","DensityPrioritySpecies","OccupancySpeciesCount","OccupancyRobustCV","OccupancyPrioritySpecies","PlannedGrids","LongStratum","is_superstratum"
+"1","USFS-Region 1 National Forests","Region 1 National Forests: Total",2023,45075,45123,29,3,164,164,1821,5,201,111,11,208,122,11,167,"",TRUE
+"2","Beaverhead-Deerlodge National Forest","Beaverhead-Deerlodge National Forest",2023,45090,45119,2,1,62,11,111,0,119,29,0,121,31,0,11,"",TRUE
+"3","Bitterroot National Forest","Bitterroot National Forest",2023,45079,45122,3,2,70,12,158,2,118,27,3,119,28,3,12,"",TRUE
+"4","Clearwater National Forest","Clearwater National Forest",2023,45111,45123,2,1,48,9,75,2,107,16,4,107,19,4,10,"",TRUE
+"5","Custer National Forest","Custer National Forest",2023,45080,45121,4,2,103,14,155,9,160,46,15,160,53,15,15,"",TRUE
+"6","Flathead National Forest","Flathead National Forest",2023,45098,45111,2,1,65,10,139,1,109,30,4,112,32,4,10,"",TRUE
+"7","Gallatin National Forest","Gallatin National Forest",2023,45076,45119,2,1,58,10,94,0,119,27,3,119,27,3,10,"",TRUE
+"8","Helena National Forest","Helena National Forest",2023,45099,45121,2,1,63,9,122,1,128,32,3,130,35,3,9,"",TRUE
+"9","Idaho Panhandle National Forest","Idaho Panhandle National Forest",2023,45081,45121,2,1,74,26,277,5,118,44,9,121,47,9,26,"",TRUE
+"10","Kootenai National Forest","Kootenai National Forest",2023,45075,45119,3,2,83,30,303,5,136,39,10,143,40,10,30,"",TRUE
+"11","Lewis and Clark National Forest","Lewis and Clark National Forest",2023,45092,45120,3,1,71,13,170,2,126,22,5,127,23,5,13,"",TRUE
+"12","Lolo National Forest","Lolo National Forest",2023,45092,45121,2,1,80,11,125,1,132,34,5,132,38,5,11,"",TRUE
+"13","Nez Perce National Forest","Nez Perce National Forest",2023,45085,45120,2,1,61,9,92,1,111,18,6,112,19,6,10,"",TRUE
+"14","USFS-Region 1 National Grasslands 2013-Present","Region 1 National Grasslands: Total",2023,45069,45113,3,2,88,16,182,5,126,26,7,127,29,7,17,"",TRUE
+"15","ND-BCR17-MG","Little Missouri National Grassland",2023,45084,45107,1,1,60,6,66,12,101,23,0,101,24,0,6,"ND-BCR17-MG: Little Missouri National Grassland",FALSE
+"16","ND-BCR17-RG","Cedar River National Grassland",2023,45087,45113,1,1,29,4,34,10,77,11,6,78,11,6,5,"ND-BCR17-RG: Cedar River National Grassland",FALSE
+"17","SD-BCR17-RG","Grand River National Grassland",2023,45069,45086,1,1,51,6,82,12,76,14,0,76,15,0,6,"SD-BCR17-RG: Grand River National Grassland",FALSE
+"18","USFS-Region 2 National Forests","Region 2 National Forests: Total",2023,45069,45130,22,4,170,157,1702,13,219,109,24,225,120,24,163,"",TRUE
+"19","CO-BCR16-AR","Arapaho and Roosevelt National Forests",2023,45077,45129,1,1,80,20,202,11,107,37,7,107,37,7,20,"CO-BCR16-AR: Arapaho and Roosevelt National Forests",FALSE
+"20","WY-BCR10-BI","Bighorn National Forest",2023,45088,45127,1,1,61,9,101,7,100,19,5,100,20,5,9,"WY-BCR10-BI: Bighorn National Forest",FALSE
+"21","Black Hills National Forest","Black Hills National Forest",2023,45069,45118,2,2,63,11,111,3,98,24,8,100,26,9,14,"",TRUE
+"22","CO-BCR16-GM","Grand Mesa, Uncompaghre and Gunnison National Forests",2023,45090,45130,1,1,52,7,74,3,105,20,6,106,20,6,7,"CO-BCR16-GM: Grand Mesa; Uncompahgre and Gunnison National Forests",FALSE
+"23","Medicine Bow National Forest","Medicine Bow National Forest",2023,45087,45126,2,1,92,17,170,5,138,34,6,137,35,6,17,"",TRUE
+"24","Nebraska National Forests","Nebraska National Forests (Nebraska and Samuel R. McKelvie)",2023,45075,45105,3,1,60,10,116,1,NA,NA,NA,NA,NA,NA,12,"",TRUE
+"25","CO-BCR16-PS","Pike and San Isabel National Forests",2023,45084,45118,1,1,65,9,103,4,96,24,0,96,25,0,9,"CO-BCR16-PS: Pike and San Isabel National Forests",FALSE
+"26","Rio Grande National Forest","Rio Grande National Forest",2023,45098,45126,3,1,72,11,137,6,126,33,6,126,36,6,12,"",TRUE
+"27","Routt National Forest","Routt National Forest",2023,45100,45126,2,1,78,15,147,3,119,34,3,122,34,3,15,"",TRUE
+"28","CO-BCR16-SA","San Juan National Forest",2023,45086,45127,1,1,96,17,184,10,123,42,5,124,44,5,17,"CO-BCR16-SA: San Juan National Forest",FALSE
+"29","Shoshone National Forest","Shoshone National Forest",2023,45101,45126,2,1,72,10,143,4,142,18,5,145,18,5,10,"",TRUE
+"30","White River National Forest","White River National Forest",2023,45098,45125,3,1,83,21,214,5,121,47,6,122,54,6,21,"",TRUE
+"31","USFS-Region 2 National Grasslands 2013-Present","Region 2 National Grasslands: Total",2023,45054,45113,7,4,105,35,400,12,NA,NA,NA,NA,NA,NA,37,"",TRUE
+"32","Nebraska National Grasslands","Nebraska National Grasslands (Buffalo Gap, Fort Pierre and Oglala)",2023,45069,45113,4,2,78,16,189,8,136,11,13,136,15,13,18,"",TRUE
+"33","KS-BCR18-CM","Cimarron National Grassland",2023,45054,45055,1,1,36,4,41,13,43,6,1,44,6,1,4,"KS-BCR18-CM: Cimarron National Grassland",FALSE
+"34","CO-BCR18-CO","Comanche National Grassland",2023,45069,45079,1,1,29,7,69,6,93,7,2,91,8,1,7,"CO-BCR18-CO: Comanche National Grassland",FALSE
+"35","CO-BCR18-PG","Public Lands on Pawnee National Grassland",2023,45062,45079,1,1,30,8,101,11,46,7,2,46,7,2,8,"CO-BCR18-PG: Pawnee National Grassland - Public Lands",FALSE
+"36","WY-BCR17-TB","Thunder Basin National Grassland",2023,45070,45090,1,1,50,8,99,18,102,10,2,103,10,2,8,"WY-BCR17-TB: Thunder Basin National Grassland",FALSE
+"37","Coronado National Forest","Coronado National Forest",2023,45050,45085,2,2,124,20,197,25,135,47,28,141,52,30,20,"",TRUE
+"38","Kaibab National Forest","Kaibab National Forest",2023,45047,45098,2,1,110,38,451,3,135,61,3,137,65,3,38,"",TRUE
+"39","USFS-Region 4 National Forests","Region 4 National Forest Total",2023,45065,45125,36,6,175,145,1394,5,211,116,10,217,121,11,147,"",TRUE
+"40","Ashley National Forest","Ashley National Forest",2023,45073,45118,3,2,63,10,118,3,119,13,8,119,14,8,10,"",TRUE
+"41","Boise National Forest","Boise National Forest",2023,45099,45118,2,1,80,11,97,4,113,34,7,113,36,7,11,"",TRUE
+"42","Bridger-Teton National Forest","Bridger-Teton National Forest",2023,45104,45125,2,1,75,10,113,1,129,17,6,131,19,7,10,"",TRUE
+"43","Caribou-Targhee National Forest","Caribou-Targhee National Forest",2023,45078,45120,6,3,97,14,148,0,152,27,3,155,29,3,14,"",TRUE
+"44","Dixie National Forest","Dixie National Forest",2023,45065,45108,2,1,77,10,104,0,113,28,0,113,31,0,10,"",TRUE
+"45","Fishlake National Forest","Fishlake National Forest",2023,45069,45109,2,1,69,10,101,0,105,34,0,106,36,0,10,"",TRUE
+"46","Humboldt-Toiyabe National Forest","Humboldt-Toiyabe National Forest",2023,45071,45114,5,2,101,19,179,4,130,30,4,133,31,5,19,"",TRUE
+"47","Manti-La Sal National Forest","Manti-La Sal National Forest",2023,45083,45113,3,2,75,13,111,0,145,23,4,145,26,4,14,"",TRUE
+"48","ID-BCR10-PA","Payette National Forest",2023,45107,45121,1,1,72,11,89,0,115,23,7,116,26,7,11,"ID-BCR10-PA: Payette National Forest",FALSE
+"49","Salmon-Challis National Forest","Salmon-Challis National Forest",2023,45096,45120,2,1,55,11,94,5,117,26,7,117,28,7,11,"",TRUE
+"50","Sawtooth National Forest","Sawtooth National Forest",2023,45087,45120,3,2,75,12,105,2,128,31,2,128,31,2,12,"",TRUE
+"51","Uinta-Wasatch-Cache National Forest","Uinta-Wasatch-Cache National Forest",2023,45076,45123,5,2,81,14,135,0,124,19,0,125,22,0,15,"",TRUE
+"52","ID-BCR9-CU","Curlew National Grassland",2023,45075,45077,1,1,38,5,58,7,78,7,0,78,7,0,5,"ID-BCR9-CU: Curlew National Grassland",FALSE
+"53","CO-BLM","BLM in Colorado: Total",2023,45061,45125,13,1,144,90,997,22,134,82,19,134,84,19,92,"",TRUE
+"54","CO-BCR10-BLM","BLM in Colorado BCR 10",2023,45069,45113,3,1,74,14,162,2,67,15,1,67,15,1,14,"",TRUE
+"55","CO-BCR16-BLM","BLM in Colorado BCR 16",2023,45061,45125,10,1,135,76,835,5,126,80,4,126,80,4,78,"",TRUE
+"56","CO-BLM - Kremmling Field Office","Kremmling Field Office",2023,45086,45113,2,1,61,8,83,4,54,9,1,54,10,1,8,"",TRUE
+"57","CO-BLM - Little Snake Field Office","Little Snake Field Office",2023,45069,45110,2,1,74,17,199,2,67,28,2,67,30,2,17,"",TRUE
+"58","CO-BLM - White River Field Office","White River Field Office",2023,45062,45104,2,1,86,14,173,3,71,27,1,71,28,1,14,"",TRUE
+"59","CO-BCR16-CR","Colorado River Valley Field Office",2023,45072,45115,1,1,70,7,66,6,66,19,1,66,19,1,7,"CO-BCR16-CR: Bureau of Land Management - Colorado River Valley",FALSE
+"60","CO-BCR16-GJ","Grand Junction Field Office",2023,45062,45105,1,1,56,9,95,7,50,21,1,50,21,1,11,"CO-BCR16-GJ: Bureau of Land Management - Grand Junction",FALSE
+"61","CO-BCR16-GU","Gunnison Field Office",2023,45097,45125,1,1,66,7,85,7,54,21,1,54,22,1,7,"CO-BCR16-GU: Bureau of Land Management - Gunnison",FALSE
+"62","CO-BCR16-RG","Royal Gorge Field Office",2023,45076,45118,1,1,55,7,62,4,53,24,0,53,24,0,7,"CO-BCR16-RG: Bureau of Land Management - Royal Gorge",FALSE
+"63","CO-BCR16-SL","San Luis Valley Field Office",2023,45101,45116,1,1,42,7,80,7,37,13,2,37,14,2,7,"CO-BCR16-SL: Bureau of Land Management - San Luis Valley",FALSE
+"64","CO-BCR16-TR","Tres Rios Field Office",2023,45063,45089,1,1,64,7,87,7,59,21,1,59,23,1,7,"CO-BCR16-TR: Bureau of Land Management - Tres Rios",FALSE
+"65","CO-BCR16-UN","Uncompahgre Field Office",2023,45061,45114,1,1,68,7,67,9,63,12,2,63,14,2,7,"CO-BCR16-UN: Bureau of Land Management - Uncompahgre",FALSE
+"66","ID-BLM","BLM in Idaho: Total",2023,45073,45121,21,1,157,69,804,16,194,79,22,198,84,22,69,"",TRUE
+"67","ID-BCR9-BLM","BLM in Idaho BCR 9",2023,45073,45110,12,1,124,45,547,12,177,60,20,180,65,20,45,"",TRUE
+"68","ID-BCR10-BLM","BLM in Idaho BCR 10",2023,45080,45117,8,1,108,22,240,9,156,53,19,156,58,19,22,"",TRUE
+"69","ID-BLM - Challis Field Office","Challis Field Office",2023,45084,45098,2,1,36,5,61,4,98,10,10,100,10,10,5,"",TRUE
+"70","ID-BLM - Cottonwood Field Office","Cottonwood Field Office",2023,45086,45109,2,1,54,5,41,3,103,23,6,103,25,6,5,"",TRUE
+"71","ID-BCR10-CA","Coeur d'Alene Field Office",2023,45098,45117,1,1,44,5,43,2,84,17,7,84,17,7,5,"ID-BCR10-CA: Bureau of Land Management - Coeur d'Alene Field Office",FALSE
+"72","ID-BCR10-FR","Four Rivers Field Office",2023,45094,45106,1,1,36,3,40,3,78,6,10,77,8,10,3,"ID-BCR10-FR: Bureau of Land Management - Four Rivers Field Office",FALSE
+"73","ID-BLM - Pocatello Field Office","Pocatello Field Office",2023,45085,45121,3,1,74,7,86,4,113,14,9,114,15,9,7,"",TRUE
+"74","ID-BLM - Salmon Field Office","Salmon Field Office",2023,45083,45110,2,1,54,5,51,4,92,15,7,92,17,7,5,"",TRUE
+"75","ID-BLM - Shoshone Field Office","Shoshone Field Office",2023,45073,45084,2,1,48,5,74,4,99,9,11,98,9,11,5,"",TRUE
+"76","ID-BLM - Upper Snake Field Office","Upper Snake Field Office",2023,45074,45098,2,1,54,6,76,7,85,7,10,85,8,10,6,"",TRUE
+"77","ID-BCR9-BR","Bruneau Field Office",2023,45076,45091,1,1,45,5,44,7,97,6,10,97,6,10,5,"ID-BCR9-BR: Bureau of Land Management - Bruneau Field Office",FALSE
+"78","ID-BCR9-BU","Burley Field Office",2023,45075,45087,1,1,38,5,58,7,74,7,15,76,7,15,5,"ID-BCR9-BU: Bureau of Land Management - Burley Field Office",FALSE
+"79","ID-BCR9-JA","Jarbridge Field Office",2023,45075,45094,1,1,19,5,61,5,39,4,9,39,4,9,5,"ID-BCR9-JA: Bureau of Land Management - Jarbidge Field Office",FALSE
+"80","ID-BCR9-OW","Owyhee Field Office",2023,45084,45093,1,1,43,5,62,4,90,6,11,90,8,11,5,"ID-BCR9-OW: Bureau of Land Management - Owyhee Field Office",FALSE
+"81","MT-BLM","BLM in Montana: Total",2023,45067,45118,5,1,140,33,482,16,180,45,20,182,50,21,35,"",TRUE
+"82","MT-BCR10-BLM","BLM in Montana BCR 10",2023,45073,45118,2,1,63,7,87,2,138,18,10,139,19,10,7,"",TRUE
+"83","MT-BCR11-BLM","BLM in Montana BCR 11",2023,45067,45095,2,1,91,17,257,14,109,29,14,113,32,15,18,"",TRUE
+"84","MT-BCR17-BL","BLM in Montana BCR 17",2023,45068,45095,1,1,71,9,138,17,108,17,13,108,18,13,10,"MT-BCR17-BL: Bureau of Land Management",FALSE
+"85","OR-BCR9 BLM","BLM in Oregon BCR 9",2023,45062,45112,4,1,65,32,380,0,120,27,0,123,29,0,32,"",TRUE
+"86","OR-BCR9-BU","Burns District: BCR9",2023,45078,45103,1,1,33,8,84,0,79,10,2,80,11,2,8,"OR-BCR9-BU: Bureau of Land Management - Burns District",FALSE
+"87","OR-BCR9-LA","Lakeview and Medford Districts: BCR9",2023,45062,45065,1,1,38,8,119,1,69,10,4,70,10,4,8,"OR-BCR9-LA: Bureau of Land Management - Lakeview and Medford Districts",FALSE
+"88","OR-BCR9-PR","Prineville District: BCR9",2023,45068,45072,1,1,45,8,107,0,83,12,3,84,13,3,8,"OR-BCR9-PR: Bureau of Land Management - Prineville District",FALSE
+"89","OR-BCR9-VA","Vale District: BCR9",2023,45093,45112,1,1,23,8,70,0,40,9,2,40,9,2,8,"OR-BCR9-VA: Bureau of Land Management - Vale District",FALSE
+"90","OR-BCR10 BLM","BLM in Oregon BCR 10",2023,45070,45107,3,1,67,24,252,1,107,32,3,108,37,3,24,"",TRUE
+"91","OR-BCR10-BU","Burns District: BCR10",2023,45085,45107,1,1,46,8,79,0,78,15,0,79,16,0,8,"OR-BCR10-BU: Bureau of Land Management - Burns District",FALSE
+"92","OR-BCR10-PR","Prineville District: BCR10",2023,45070,45082,1,1,47,8,87,0,80,16,2,80,17,2,8,"OR-BCR10-PR: Bureau of Land Management - Prineville District",FALSE
+"93","OR-BCR10-VA","Vale District: BCR10",2023,45097,45106,1,1,39,8,86,1,58,10,1,58,10,1,8,"OR-BCR10-VA: Bureau of Land Management - Vale District",FALSE
+"94","ND-BCR17-BM","BLM in North Dakota BCR 17",2023,45089,45106,1,1,57,4,54,15,113,8,5,113,9,5,5,"ND-BCR17-BM: Bureau of Land Management",FALSE
+"95","SD-BCR17-BM","BLM in South Dakota BCR 17",2023,45089,45113,1,1,61,4,48,15,138,5,17,138,6,17,5,"SD-BCR17-BM: Bureau of Land Management",FALSE
+"96","UT-BLM","BLM in Utah: Total",2023,45052,45112,19,1,121,80,911,23,160,70,30,161,72,30,80,"",TRUE
+"97","UT-BCR9 BLM","BLM in Utah BCR 9",2023,45058,45098,5,1,75,25,295,16,130,28,24,132,31,24,25,"",TRUE
+"98","UT-BCR10 BLM","BLM in Utah BCR 10",2023,45072,45111,2,1,51,6,84,9,79,17,14,79,16,14,6,"",TRUE
+"99","UT-BCR16 BLM","BLM in Utah BCR 16",2023,45052,45112,11,1,103,46,497,15,138,63,22,138,65,22,46,"",TRUE
+"100","UT-BLM - Cedar City Field Office","Cedar City Field Office",2023,45057,45086,2,1,62,7,77,10,101,13,14,101,14,14,7,"",TRUE
+"101","UT-BLM - Fillmore Field Office","Fillmore Field Office",2023,45063,45098,2,1,53,10,118,10,85,6,13,86,7,13,10,"",TRUE
+"102","UT-BCR16-KA","Kanab Field Office",2023,45052,45080,1,1,38,3,34,7,78,8,13,77,8,13,3,"UT-BCR16-KA: Bureau of Land Management - Kanab Field Office",FALSE
+"103","UT-BCR16-MO","Moab Field Office",2023,45064,45086,1,1,54,6,63,7,72,14,9,72,14,9,6,"UT-BCR16-MO: Bureau of Land Management - Moab Field Office",FALSE
+"104","UT-BCR16-MN","Monticello Field Office",2023,45083,45087,1,1,38,5,52,3,58,12,7,58,13,7,5,"UT-BCR16-MN: Bureau of Land Management - Monticello Field Office",FALSE
+"105","UT-BCR16-PR","Price Field Office",2023,45075,45085,1,1,45,6,61,6,91,6,10,91,6,10,6,"UT-BCR16-PR: Bureau of Land Management - Price Field Office",FALSE
+"106","UT-BLM - Richfield Field Office","Richfield Field Office",2023,45080,45104,2,1,47,8,87,7,90,7,15,90,5,15,8,"",TRUE
+"107","UT-BLM - Saint George Field Office","Saint George Field Office",2023,45054,45077,3,1,62,9,92,8,101,14,16,101,19,16,9,"",TRUE
+"108","UT-BLM - Salt Lake Field Office","Salt Lake Field Office",2023,45067,45112,3,1,61,12,163,11,108,7,21,108,7,21,12,"",TRUE
+"109","UT-BLM - Vernal Field Office","Vernal Field Office",2023,45063,45086,2,1,60,9,116,10,85,11,13,85,12,13,9,"",TRUE
+"110","WY-BLM","BLM in Wyoming: Total",2023,45069,45118,14,1,138,95,1276,11,178,77,13,179,82,13,96,"",TRUE
+"111","WY-BCR16-BL","BLM in Wyoming BCR 16",2023,45087,45112,1,1,32,2,18,4,87,6,3,87,7,3,2,"WY-BCR16-BL: Bureau of Land Management",FALSE
+"112","WY-BCR18-BL","BLM in Wyoming BCR 18",2023,45075,45077,1,1,14,2,20,6,53,4,6,54,5,6,2,"WY-BCR18-BL: Bureau of Land Management",FALSE
+"113","WY-BLM-Buffalo","Buffalo Field Office",2023,45071,45117,2,1,68,5,71,5,109,12,7,110,14,7,5,"",TRUE
+"114","WY-BLM-Casper","Casper Field Office",2023,45070,45088,2,1,55,8,107,4,102,16,6,102,16,6,8,"",TRUE
+"115","WY-BCR10-CO","Cody Field Office",2023,45071,45078,1,1,65,7,92,7,77,9,4,77,10,4,7,"WY-BCR10-CO: Bureau of Land Management - Cody Field Office",FALSE
+"116","WY-BCR10-KE","Kemmerer Field Office",2023,45074,45106,1,1,30,5,49,5,53,7,6,53,7,6,5,"WY-BCR10-KE: Bureau of Land Management - Kemmerer Field Office",FALSE
+"117","WY-BCR10-LA","Lander Field Office",2023,45071,45107,1,1,55,17,256,13,93,15,8,93,17,8,17,"WY-BCR10-LA: Bureau of Land Management - Lander Field Office",FALSE
+"118","WY-BCR17-NE","Newcastle Field Office",2023,45069,45074,1,1,31,3,41,11,94,8,10,94,11,10,3,"WY-BCR17-NE: Bureau of Land Management - Newcastle Field Office",FALSE
+"119","WY-BCR10-PI","Pinedale Field Office",2023,45087,45118,1,1,43,11,151,7,102,11,6,102,11,6,11,"WY-BCR10-PI: Bureau of Land Management - Pinedale Field Office",FALSE
+"120","WY-BCR10-RA","Rawlins Field Office",2023,45077,45111,1,1,68,15,209,21,87,13,9,87,15,9,15,"WY-BCR10-RA: Bureau of Land Management - Rawlins Field Office",FALSE
+"121","WY-BCR10-RO","Rock Springs Field Office",2023,45077,45108,1,1,66,14,177,14,96,10,10,95,13,9,14,"WY-BCR10-RO: Bureau of Land Management - Rock Springs Field Office",FALSE
+"122","WY-BCR10-WO","Worland Field Office",2023,45070,45110,1,1,43,6,85,7,88,10,9,87,13,9,7,"WY-BCR10-WO: Bureau of Land Management - Worland Field Office",FALSE
+"123","CO-BCR18-DO","DOD Lands in Colorado BCR 18",2023,45070,45073,1,1,55,2,23,7,115,6,13,116,8,13,2,"CO-BCR18-DO: Department of Defense",FALSE
+"124","UT-BCR9 Department of Defense lands","DOD Lands in Utah BCR 9",2023,45054,45098,6,1,42,31,457,1,66,11,2,66,11,2,31,"",TRUE
+"125","UT-BCR9-DD","All Other DOD Lands in Utah BCR 9",2023,45054,45098,1,1,32,8,104,0,53,6,0,53,7,0,8,"UT-BCR9-DD: Department of Defense - Other Lands",FALSE
+"126","UT-BCR9-MU","DOD Lands in Utah BCR 9 - Mudflats",2023,45078,45091,1,1,4,3,48,0,2,1,0,2,1,0,3,"UT-BCR9-MU: Department of Defense - Mudflats",FALSE
+"127","UT-BCR9-AP","DOD Lands in Utah BCR 9 - APG Impact Areas",2023,45061,45063,1,1,14,6,95,0,21,5,0,21,5,0,6,"UT-BCR9-AP: Department of Defense - APG Impact Area",FALSE
+"128","UT-BCR9-TS","DOD Lands in Utah BCR 9 - Target S Impact Areas",2023,45056,45082,1,1,17,6,93,1,23,5,1,23,5,1,6,"UT-BCR9-TS: Department of Defense - Target S Impact Area",FALSE
+"129","UT-BCR9-UR","DOD Lands in Utah BCR 9 - UTG Impact Areas",2023,45068,45070,1,1,2,6,91,0,4,0,0,4,0,0,5,"UT-BCR9-UR: Department of Defense - UTG Impact Area",FALSE
+"130","UT-BCR9-UT","DOD Lands in Utah BCR 9 - UTTR Impact Areas",2023,45078,45083,1,1,12,2,26,0,25,4,1,25,4,1,3,"UT-BCR9-UT: Department of Defense - UTTR Impact Areas",FALSE
+"131","WY-BCR18-DO","DOD Lands in Wyoming BCR 18",2023,45084,45085,1,1,34,2,22,10,60,6,19,60,6,19,2,"WY-BCR18-DO: Department of Defense",FALSE
+"132","NPS-Greater Yellowstone Network","Greater Yellowstone Network: Total",2023,45075,45126,3,1,90,12,162,0,130,26,0,132,29,0,12,"",TRUE
+"133","WY-BCR10-BH","Bighorn Canyon National Recreation Area",2023,45075,45076,1,1,29,2,22,8,65,4,0,67,4,0,2,"WY-BCR10-BH: Bighorn Canyon National Recreation Area",FALSE
+"134","WY-BCR10-GR","Grand Teton National Park",2023,45083,45112,1,1,56,3,46,8,85,18,0,85,18,0,3,"WY-BCR10-GR: Grand Teton National Park",FALSE
+"135","WY-BCR10-YE","Yellowstone National Park",2023,45114,45126,1,1,62,7,94,6,88,20,12,88,20,12,7,"WY-BCR10-YE: Yellowstone National Park",FALSE
+"136","CO-BCR16-NC","Northern Colorado Plateau Network in Colorado",2023,45075,45104,1,1,22,2,18,4,74,1,0,74,2,0,2,"CO-BCR16-NC: National Park Service - Northern Colorado Plateau Network",FALSE
+"137","NE-BCR18-AF","Agate Fossil Beds National Monument",2023,45085,45104,1,1,39,4,38,5,93,11,0,94,11,0,4,"NE-BCR18-AF: Agate Fossil Beds National Monument",FALSE
+"138","SD-BCR17-BN","Badlands National Park - North Unit",2023,45068,45086,1,1,45,6,71,5,97,9,0,98,12,0,6,"SD-BCR17-BN: Badlands National Park - North Unit",FALSE
+"139","SD-BCR17-JC","Jewel Cave National Monument",2023,45116,45118,1,1,42,4,39,2,88,20,0,88,19,0,4,"SD-BCR17-JC: Jewel Cave National Monument",FALSE
+"140","ND-BCR17-KR","Knife River Indian Villages National Historic Site",2023,45083,45101,1,1,69,5,44,10,110,26,0,114,28,0,5,"ND-BCR17-KR: Knife River Indian Villages National Historic Site",FALSE
+"141","Missouri National Recreational River","Missouri National Recreational River",2023,45070,45093,2,2,95,12,97,0,121,47,0,124,53,0,12,"",TRUE
+"142","MR-NGPIM-FM","Missouri National Recreational River - 59 Mile District",2023,45071,45083,1,2,72,6,43,0,103,25,0,104,29,0,6,"MR-NGPIM-FM: Missouri National Recreational River - 59 Mile District",FALSE
+"143","MR-NGPIM-TM","Missouri National Recreational River - 39 Mile District",2023,45070,45093,1,2,78,6,54,0,111,29,0,114,33,0,6,"MR-NGPIM-TM: Missouri National Recreational River - 39 Mile District",FALSE
+"144","SD-BCR17-MR","Mount Rushmore National Monument",2023,45108,45119,1,1,28,4,27,1,79,10,0,79,12,0,6,"SD-BCR17-MR: Mount Rushmore National Monument",FALSE
+"145","NE-NGPIM-NI","Niobrara National Scenic River",2023,45074,45096,1,1,78,5,59,0,114,28,0,116,30,0,6,"NE-NGPIM-NI: Niobrara National Scenic River",FALSE
+"146","NE-BCR18-SB","Scotts Bluff National Monument",2023,45097,45102,1,1,41,4,30,9,78,11,0,78,12,0,4,"NE-BCR18-SB: Scotts Bluff National Monument",FALSE
+"147","Theodore Roosevelt National Park","Theodore Roosevelt National Park",2023,45091,45112,2,1,70,11,97,0,118,33,0,119,36,0,12,"",TRUE
+"148","SD-BCR17-WC","Wind Cave National Park",2023,45086,45114,1,1,54,6,68,4,124,19,0,126,21,0,6,"SD-BCR17-WC: Wind Cave National Park",FALSE
+"149","CO-BCR16-RM","Rocky Mountain Network in Colorado",2023,45103,45114,1,1,29,2,27,0,86,8,0,86,8,0,2,"CO-BCR16-RM: National Park Service - Rocky Mountain Network",FALSE
+"150","CO-BCR16-SC","Southern Colorado Plateau Network in Colorado",2023,45086,45089,1,1,34,2,25,4,78,11,0,78,13,0,2,"CO-BCR16-SC: National Park Service - Southern Colorado Plateau Network",FALSE
+"151","WY-BCR10-WR","Wind River Tribal Lands in Wyoming BCR 10",2023,45076,45100,1,1,72,7,76,13,92,13,18,93,16,18,7,"WY-BCR10-WR: Wind River Reservation",FALSE
+"152","CO","Colorado Statewide: Total",2023,45061,45130,41,1,214,300,3170,37,244,135,48,250,149,48,304,"",TRUE
+"153","CO-All Other","All Other Lands in Colorado",2023,45062,45118,7,1,150,77,750,26,207,89,44,210,93,45,78,"",TRUE
+"154","CO-BCR10","Colorado BCR 10: Total",2023,45069,45113,4,1,96,19,216,14,121,27,23,122,28,23,19,"",TRUE
+"155","CO-BCR10-AO","All Other Lands in Colorado BCR 10",2023,45072,45105,1,1,64,5,54,8,112,10,22,113,13,22,5,"CO-BCR10-AO: All Other Lands",FALSE
+"156","CO-BCR16","Colorado BCR 16: Total",2023,45061,45130,27,1,166,208,2176,26,196,106,37,198,114,37,211,"",TRUE
+"157","CO-BCR16-AO","All Other Lands in Colorado BCR 16",2023,45063,45118,1,1,115,24,193,13,179,49,33,180,50,34,24,"CO-BCR16-AO: All Other Lands",FALSE
+"158","CO-BCR18-All Other","Colorado BCR 18: Total",2023,45062,45092,5,1,85,48,503,12,132,45,22,134,48,23,49,"",TRUE
+"159","CO-Rivers","Colorado BCR 18 Rivers",2023,45063,45078,2,1,77,8,82,4,177,26,27,178,29,27,8,"",TRUE
+"160","CO-BCR18-Nonrivers","Non-river Lands in Colorado BCR 18",2023,45062,45092,8,1,118,65,696,16,175,45,30,177,53,30,66,"",TRUE
+"161","KS-BCR18-AO","All Other Lands in Kansas BCR 18",2023,45062,45088,1,1,58,11,88,19,63,13,19,64,16,20,11,"KS-BCR18-AO: All Other Lands",FALSE
+"162","KS-BCR18-PL","Playas in Kansas BCR 18",2023,45055,45086,1,1,41,11,125,14,51,9,20,51,10,20,11,"KS-BCR18-PL: Playas",FALSE
+"163","KS-BCR18-RV","Rivers in Kansas BCR 18",2023,45063,45081,1,1,67,11,126,21,85,23,25,85,27,25,11,"KS-BCR18-RV: Rivers",FALSE
+"164","KS-BCR19-AO","All Other Lands in Kansas BCR 19",2023,45071,45086,1,1,73,11,78,21,97,27,25,98,30,25,11,"KS-BCR19-AO: All Other Lands",FALSE
+"165","KS-BCR19-PL","Playas in Kansas BCR 19",2023,45064,45078,1,1,46,11,116,16,62,16,19,62,20,19,11,"KS-BCR19-PL: Playas",FALSE
+"166","KS-BCR19-RV","Rivers in Kansas BCR 19",2023,45057,45088,1,1,118,11,86,32,109,46,26,112,53,26,11,"KS-BCR19-RV: Rivers",FALSE
+"167","MT","Montana Statewide: Total",2023,45067,45122,30,1,216,178,2184,37,224,125,43,232,144,45,182,"",TRUE
+"168","MT-All Other 2018-Present","All Other Lands in Montana",2023,45069,45119,3,1,146,25,322,26,179,57,36,180,73,35,26,"",TRUE
+"169","MT-BCR10","Montana BCR 10: Total",2023,45073,45122,21,1,147,118,1351,19,194,80,30,201,90,31,119,"",TRUE
+"170","MT-BCR10-ON","All Other Lands in Montana BCR 10",2023,45077,45116,1,1,88,7,75,13,131,15,16,133,15,16,8,"MT-BCR10-ON: All Other Lands",FALSE
+"171","MT-BCR11","Montana BCR 11: Total",2023,45067,45115,4,1,111,31,434,20,132,32,23,135,38,24,33,"",TRUE
+"172","MT-BCR11-AO","All Other Lands in Montana BCR 11",2023,45072,45106,1,1,79,8,114,13,119,18,22,118,23,21,8,"MT-BCR11-AO: All Other Lands",FALSE
+"173","MT-BCR17","Montana BCR 17: Total",2023,45068,45119,5,1,146,29,399,20,180,39,30,183,45,30,30,"",TRUE
+"174","MT-BCR17-AO","All Other Lands in Montana BCR 17",2023,45069,45119,1,1,91,10,133,16,134,21,21,135,21,21,10,"MT-BCR17-AO: All Other Lands",FALSE
+"175","NE-BCR17-ON","All Other Lands in Nebraska BCR 17",2023,45076,45102,1,1,51,4,47,3,78,10,10,78,12,10,4,"NE-BCR17-ON: All Other Lands",FALSE
+"176","ND-BCR17-AT","All Other Lands in North Dakota BCR 17",2023,45086,45103,1,1,51,4,34,14,84,10,19,87,10,21,4,"ND-BCR17-AT: All Other Lands",FALSE
+"177","OK-BCR18-AO","All Other Lands in Oklahoma BCR 18",2023,45047,45062,1,1,67,6,62,15,87,15,15,87,16,15,6,"OK-BCR18-AO: All Other Lands",FALSE
+"178","OK-BCR18-PL","Playas in Oklahoma BCR 18",2023,45048,45059,1,1,17,2,14,7,47,2,8,46,2,7,2,"OK-BCR18-PL: Playas",FALSE
+"179","OK-BCR18-RV","Rivers in Oklahoma BCR 18",2023,45056,45058,1,1,17,2,14,7,85,4,11,85,4,11,2,"OK-BCR18-RV: Rivers",FALSE
+"180","OK-BCR19-AO","All Other Lands in Oklahoma BCR 19",2023,45049,45058,1,1,96,8,54,22,101,20,11,105,25,12,8,"OK-BCR19-AO: All Other Lands",FALSE
+"181","OK-BCR19-PL","Playas in Oklahoma BCR 19",2023,45057,45061,1,1,29,2,15,9,43,4,7,43,5,7,2,"OK-BCR19-PL: Playas",FALSE
+"182","OK-BCR19-RV","Rivers in Oklahoma BCR 19",2023,45055,45056,1,1,57,2,16,14,92,9,11,96,14,12,2,"OK-BCR19-RV: Rivers",FALSE
+"183","SD-BCR17-AT","All Other Lands in South Dakota BCR 17",2023,45071,45090,1,1,58,5,57,10,94,12,12,94,12,12,5,"SD-BCR17-AT: All Other Lands",FALSE
+"184","UT","Utah Statewide: Total",2023,45051,45118,42,1,173,256,2919,10,221,124,16,224,131,16,273,"",TRUE
+"185","UT-All Other Lands","All Other Lands in Utah",2023,45051,45114,4,1,149,92,1042,6,197,85,13,199,89,14,108,"",TRUE
+"186","UT-BCR9","Utah BCR 9: Total",2023,45051,45107,17,1,123,103,1238,5,170,69,13,171,72,13,109,"",TRUE
+"187","UT-BCR9-AO","All Other Lands in Utah BCR 9",2023,45051,45107,1,1,106,35,383,3,141,38,8,141,41,8,41,"UT-BCR9-AO: All Other Lands",FALSE
+"188","UT-BCR10","Utah BCR 10: Total",2023,45063,45111,5,1,82,15,174,3,134,19,10,136,21,10,17,"",TRUE
+"189","UT-BCR10-AO","All Other Lands in Utah BCR 10",2023,45063,45099,1,1,32,3,26,1,90,5,6,91,5,6,5,"UT-BCR10-AO: All Other Lands",FALSE
+"190","UT-BCR16","Utah BCR 16: Total",2023,45052,45118,18,1,143,122,1320,5,195,109,11,195,112,11,129,"",TRUE
+"191","UT-BCR16-AO","All Other Lands in Utah BCR 16",2023,45056,45114,1,1,120,41,481,4,163,54,8,163,60,8,47,"UT-BCR16-AO: All Other Lands",FALSE
+"192","UT-BCR33","Utah BCR 33: Total",2023,45054,45064,2,1,66,16,187,1,115,10,4,116,12,4,18,"",TRUE
+"193","UT-BCR33-AO","All Other Lands in Utah BCR 33",2023,45054,45064,1,1,57,13,152,0,109,16,1,110,18,1,15,"UT-BCR33-AO: All Other Lands",FALSE
+"194","WY","Wyoming Statewide: Total",2023,45069,45127,37,1,210,233,2883,54,221,118,67,226,134,70,236,"",TRUE
+"195","WY-All Other","All Other Lands in Wyoming",2023,45069,45105,4,1,144,45,508,29,196,58,57,197,70,58,46,"",TRUE
+"196","WY-BCR10","Wyoming BCR 10: Total",2023,45070,45127,23,1,193,158,2012,47,203,101,60,208,114,63,158,"",TRUE
+"197","WY-BCR10-AO","All Other Lands in Wyoming BCR 10",2023,45070,45105,1,1,110,15,152,14,165,29,39,167,33,41,15,"WY-BCR10-AO: All Other Lands",FALSE
+"198","WY-BCR16","Wyoming BCR 16: Total",2023,45086,45125,4,1,102,21,210,14,164,46,39,163,48,39,24,"",TRUE
+"199","WY-BCR16-AO","All Other Lands in Wyoming BCR 16",2023,45086,45104,1,1,52,6,56,9,113,11,24,114,12,25,7,"WY-BCR16-AO: All Other Lands",FALSE
+"200","WY-BCR17","Wyoming BCR 17: Total",2023,45069,45100,6,1,122,36,441,28,174,33,45,177,38,47,36,"",TRUE
+"201","WY-BCR17-AO","All Other Lands in Wyoming BCR 17",2023,45069,45100,1,1,90,12,141,25,149,23,36,149,26,36,12,"WY-BCR17-AO: All Other Lands",FALSE
+"202","WY-BCR18","Wyoming BCR 18: Total",2023,45071,45096,3,1,65,16,201,14,112,18,32,112,19,32,16,"",TRUE
+"203","WY-BCR18-AO","All Other Lands in Wyoming BCR 18",2023,45071,45096,1,1,54,12,159,14,104,16,25,105,19,26,12,"WY-BCR18-AO: All Other Lands",FALSE
+"204","BCR17","Bird Conservation Region 17",2023,45068,45119,31,5,192,159,1851,48,229,83,69,239,96,71,172,"",TRUE
