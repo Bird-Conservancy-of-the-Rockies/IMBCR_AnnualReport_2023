@@ -11,7 +11,7 @@ title: "About Us"
 <br> 
 <br>
   
-<img src="figures/BCR-3-teams-logo.png" width="250"/>  
+<img src="/figures/BCR-3-teams-logo.png" width="250"/>  
 
 :::
 
