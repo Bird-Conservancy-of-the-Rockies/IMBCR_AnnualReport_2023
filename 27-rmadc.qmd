@@ -35,9 +35,9 @@ To help navigate the filters, it's helpful to use this report to determine the *
 
 #### Other filters {.unnumbered}
 
-**Baseline (IMBCR) or Overlay (GRTS)**: "Baseline" surveys are standard IMBCR surveys which contribute to statewide and regional estimates. These surveys are drawn spatially-balanced random sample of a given geographic extent (e.g. a National Forest or BLM Field Office). These surveys are designed to monitor broadly across many species and habitat types.  
+**Baseline (IMBCR) or Overlay (GRTS)**: "Baseline" surveys are standard IMBCR surveys which contribute to statewide and regional estimates. These surveys are drawn from a spatially-balanced random sample of a given geographic extent (e.g. a National Forest or BLM Field Office). These surveys are designed to monitor broadly across many species and habitat types.  
 
-"Overlay" surveys are projects designed to answer a specific question, or monitor a specific subset of species or habitats. These surveys may be stratified by habitat type, vegetation cover, restoration or management project boundaries, disturbance, etc. Some examples include projects designed to assess bird response to varying levels of impacts such as human recreation on heavily-used trails, oil & gas infrastructure, and grassland reseeding.
+"Overlay" surveys are projects designed to answer a specific question, or monitor a specific subset of species or habitats. These surveys may be stratified by elevation, soil type, management or project boundaries, disturbance, etc. Some examples include projects designed to assess bird response to varying levels of impacts such as human recreation on heavily-used trails, oil & gas infrastructure, and grassland reseeding.
 
 **Species**: This filter allows users to select data and results for a particular species. 
 
@@ -64,7 +64,7 @@ Selecting a Bird Conservation Region or a Stratum will display the boundary for 
 
 You may view occupancy or density results table and a chart for all appropriate strata (based on the set of filters) for which we have results, by clicking on the tabs labeled "Occupancy" or "Density".
 
-The occupancy tables display species, stratum, year, Psi (proportion of sampling units expected to be occupied), number of sampling units the species was detected on, standard error (SE) of the estimate, the percent coefficient of variation (% CV). The density tables will display species, stratum, year, number of birds estimated per km² (D), total number of individuals estimated within the stratum (N), percent coefficient of variation (% CV), and the number of independent detections used in analyses (n). 
+The occupancy tables display species, stratum, year, Psi (proportion of sampling units expected to be occupied), number of sampling units the species was detected on, the percent coefficient of variation (% CV). The density tables will display species, stratum, year, number of birds estimated per km² (D), total number of individuals estimated within the stratum (N), percent coefficient of variation (% CV), and the number of independent detections used in analyses (n). 
 
 ***Viewing the Charts***
 

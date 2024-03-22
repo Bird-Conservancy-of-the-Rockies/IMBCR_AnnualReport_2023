@@ -11,13 +11,13 @@ Table and figure numbers begin with their respective chapter numbers.
 
 @tbl-planned-completed Planned and completed surveys by strata, 2023.
 
-@tbl-reasons" Reasons planned surveys were not completed, 2023.
+@tbl-reasons Reasons planned surveys were not completed, 2023.
 
 ## Figures {.unnumbered}
 
 
 
-@fig-bcr-regions Bird Conservation Regions throughout North America, excluding Hawaii and Mexico.
+@fig-bcr-regions Bird Conservation Regions throughout North America, excluding Hawaii.
 
 @fig-extent Spatial extent of sampled Bird Conservation Regions using the IMBCR design, 2023.
 

@@ -36,10 +36,6 @@ Please note that not every stratum or superstratum is summarized in this report.
 
 Unless otherwise specified, all bird species names listed in this report are from the 63rd supplement to the American Ornithological Society's Checklist of North American Birds (Chesser et al., 2022).  
 
-#### Low-density species {.unnumbered}
-
-Please use caution when interpreting trends for low-density species at the superstratum (regional) level when there were zero detections in a given year. In these cases, we add a very small number to the estimate (i.e., half the minimum non-zero estimate) in order to take the log of the estimate. This increases uncertainty around the trend estimates.
-
 #### Number of species with estimates {.unnumbered}
 
 The way we present density and occupancy estimates in the final report has changed from years prior to 2018. In the past, if a species had been detected in a stratum in a previous year, but was not detected in the current year, we did not provide density or occupancy estimates for that species in that stratum. We now include estimates for these species. In these cases, the estimate for a given year is zero or very close to zero. We consider these to be legitimate estimates of zero occupancy or density because the species occurs in the area of interest, but was not detected in a particular year.
