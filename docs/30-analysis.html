@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,13 +46,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -61,7 +55,6 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -71,47 +64,21 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 </head>
 
 <body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./27-rmadc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./30-analysis.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./27-rmadc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./30-analysis.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -121,7 +88,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./figures/BCR-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -353,7 +320,7 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -377,7 +344,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./27-rmadc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./30-analysis.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Appendix D — Data Analysis</h1>
 </div>
@@ -392,9 +359,7 @@ window.Quarto = {
   </div>
   
 
-
 </header>
-
 
 <section id="statistical-models" class="level2" data-number="D.1">
 <h2 data-number="D.1" class="anchored" data-anchor-id="statistical-models"><span class="header-section-number">D.1</span> Statistical Models</h2>
@@ -441,17 +406,17 @@ and
 </center>
 <p><span id="eq-hurdle_epsilon"><span class="math display">\[ε_{it} \sim Normal(0,SD_{[ε]}^{2}). \tag{D.8}\]</span></span></p>
 <p>We derive density, D, as</p>
-<p><span id="eq-hurdle_D"><span class="math display">\[D_{ijt}= \frac{N_{ijt}×s}{K×∑_{d=1}^{d_{[max]}}A_{d}}, \tag{D.9}\]</span></span></p>
-<p>where <span class="math inline">\(K×∑_{d=1}^{d_{[max]}}A_{d}\)</span> is the effective area (<span class="math inline">\(km^{2}\)</span>) of estimation for a grid cell and <span class="math inline">\(s\)</span> is the mean cluster size for independent detections, which is sampled from the distribution</p>
-<p><span id="eq-hurdle_s"><span class="math display">\[s\sim Gamma(k,v)+1, \tag{D.10}\]</span></span></p>
-<p>where k and v are derived from the mean and variance of observed cluster sizes. We subtract 1 from the mean when calculating k and v and add 1 to the random variable to ensure cluster sizes were <span class="math inline">\(&gt;1\)</span>. We derive stratum-level density estimates by averaging all <span class="math inline">\(D_{ijt}\)</span> within each stratum, and we take the area-weighted average of strata estimates to obtain superstrata density and occupancy estimates.</p>
+<p><span id="eq-hurdle_D"><span class="math display">\[D_{ijt}= \frac{N_{ijt}× \hat{\bar{s}}}{K×∑_{d=1}^{d_{[max]}}A_{d}}, \tag{D.9}\]</span></span></p>
+<p>where <span class="math inline">\(K×∑_{d=1}^{d_{[max]}}A_{d}\)</span> is the effective area (<span class="math inline">\(km^{2}\)</span>) of estimation for a grid cell and <span class="math inline">\(\hat{\bar{s}}\)</span> is the estimated mean size for independent clusters, which is sampled from the distribution</p>
+<p><span id="eq-hurdle_s"><span class="math display">\[\hat{\bar{s}} \sim Normal(\hat{\mu_{s}},\hat{SE_s}), \tag{D.10}\]</span></span></p>
+<p>where <span class="math inline">\(\hat{\mu_s}=Mean(s)\)</span> and <span class="math inline">\(\hat{SE_s}=SD(s)/\sqrt{n}\)</span>, in which <span class="math inline">\(s\)</span> represents observed cluster sizes and <span class="math inline">\(n\)</span> is the number of independent clusters detected. We derive stratum-level density estimates by averaging all <span class="math inline">\(D_{ijt}\)</span> within each stratum, and we take the area-weighted average of strata estimates to obtain superstrata density and occupancy estimates.</p>
 </section>
 <section id="observation-process" class="level4">
 <h4 class="anchored" data-anchor-id="observation-process">Observation process</h4>
-<p>We model the sum of observed counts (of independent clusters of individuals) across all points surveyed within a grid cell (<span class="math inline">\(n_{ijtl}\)</span>) and the number of points where the species was detected (<span class="math inline">\(y_{ijtl}\)</span>) as</p>
+<p>We model the sum of observed counts (of independent clusters of individuals) across all points surveyed within a grid cell (<span class="math inline">\(n_{ijt}\)</span>) and the number of points where the species was detected (<span class="math inline">\(y_{ijt}\)</span>) as</p>
 <p><span id="eq-hurdle_n"><span class="math display">\[n_{ijt} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr), \tag{D.11}\]</span></span></p>
-<p><span id="eq-hurdle_y"><span class="math display">\[y_{ijt} \sim Binomial\biggl(u_{ijt},p_{[s],tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),~\mathrm{and} \tag{D.12}\]</span></span></p>
-<p><span id="eq-hurdle_p_s"><span class="math display">\[p_{[s],tl}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}, \tag{D.13}\]</span></span></p>
+<p><span id="eq-hurdle_y"><span class="math display">\[y_{ijt} \sim Binomial\biggl(u_{ijt},p_{[s],ijt}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),~\mathrm{and} \tag{D.12}\]</span></span></p>
+<p><span id="eq-hurdle_p_s"><span class="math display">\[p_{[s],ijt}=1-(1-p_{[a],tl}×p_{[p],t})^{N_{ijt}}, \tag{D.13}\]</span></span></p>
 <p>where <span class="math inline">\(p_{[a],tl}\)</span> is a year- and BCR-specific availability component of detection probability, <span class="math inline">\(p_{[p],t}\)</span> is a year-specific perceptibility component of detection probability, <span class="math inline">\(K_{[s],ijt}⁄K\)</span> is survey effort, and <span class="math inline">\(p_{[s],tl}\)</span> is the probability of detecting the species at an occupied point. Detection components summarize probability vectors,</p>
 <p><span id="eq-hurdle_p_a"><span class="math display">\[p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}} \tag{D.14}\]</span></span></p>
 <center>
@@ -475,7 +440,7 @@ and
 <p><span id="eq-hurdle_p_pd_HN"><span class="math display">\[p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d}, \tag{D.22}\]</span></span></p>
 <p>where <span class="math inline">\(d_{[low]}\)</span> and <span class="math inline">\(d_{[high]}\)</span> are the bounds for distance bin <span class="math inline">\(d\)</span> and <span class="math inline">\(σ_t\)</span> is the half-normal shape parameter. Because of the lack of an analytical solution to the integral of the hazard rate function, we calculated <span class="math inline">\(p_{[pd],td}\)</span> at the midpoint, <span class="math inline">\(d_{[mid]}\)</span>, of each distance class:</p>
 <p><span id="eq-hurdle_p_pd_HZ"><span class="math display">\[p_{[pd],td}=1-exp\biggl(-\biggl(\frac{d_{[mid]}}{h_t}\biggr)^b\biggr), \tag{D.23}\]</span></span></p>
-<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models (<a href="#eq-hurdle_p_pd_HN" class="quarto-xref">Equation&nbsp;<span>D.22</span></a> and <a href="#eq-hurdle_p_pd_HZ" class="quarto-xref">Equation&nbsp;<span>D.23</span></a>), we draw year-specific shape parameters from hyperdistributions:</p>
+<p>where <span class="math inline">\(h_t\)</span> and <span class="math inline">\(b\)</span> are estimated parameters for the hazard function. For perceptibility models (<a href="#eq-hurdle_p_pd_HN">Equation&nbsp;<span>D.22</span></a> and <a href="#eq-hurdle_p_pd_HZ">Equation&nbsp;<span>D.23</span></a>), we draw year-specific shape parameters from hyperdistributions:</p>
 <p><span id="eq-hurdle_HN_sigma"><span class="math display">\[log(σ_t) \sim Normal(μ_{[σ]},SD_{[σ]}^2), \tag{D.24}\]</span></span></p>
 <p><span id="eq-hurdle_HZ_h"><span class="math display">\[log(h_t) \sim Normal(μ_{[h]},SD_{[h]}^2). \tag{D.25}\]</span></span></p>
 <p>We also consider models allowing availability to vary by year and BCR:</p>
@@ -495,13 +460,13 @@ and
 <p>For species that we modeled abundance separately from occupancy, we describe here the abundance model, focusing on the model components that differed from the hurdle model.</p>
 <section id="state-process-1" class="level4">
 <h4 class="anchored" data-anchor-id="state-process-1">State process</h4>
-<p>We model species occupancy of grid cells in the same manner as for the hurdle model (<a href="#eq-hurdle_z" class="quarto-xref">Equation&nbsp;<span>D.1</span></a> and <a href="#eq-hurdle_psi" class="quarto-xref">Equation&nbsp;<span>D.2</span></a>). Because we model occupancy separately (see <a href="#sec-occupancy" class="quarto-xref"><span>Section D.1.4</span></a> below), we omit <a href="#eq-hurdle_u" class="quarto-xref">Equation&nbsp;<span>D.3</span></a> and <a href="#eq-hurdle_theta" class="quarto-xref">Equation&nbsp;<span>D.4</span></a> from the abundance model. Without point occupancy, we model abundance at occupied grid cells (in contrast with <a href="#eq-hurdle_N" class="quarto-xref">Equation&nbsp;<span>D.5</span></a>) more simply as</p>
+<p>We model species occupancy of grid cells in the same manner as for the hurdle model (<a href="#eq-hurdle_z">Equation&nbsp;<span>D.1</span></a> and <a href="#eq-hurdle_psi">Equation&nbsp;<span>D.2</span></a>). Because we model occupancy separately (see <a href="#sec-occupancy"><span>Section&nbsp;D.1.4</span></a> below), we omit <a href="#eq-hurdle_u">Equation&nbsp;<span>D.3</span></a> and <a href="#eq-hurdle_theta">Equation&nbsp;<span>D.4</span></a> from the abundance model. Without point occupancy, we model abundance at occupied grid cells (in contrast with <a href="#eq-hurdle_N">Equation&nbsp;<span>D.5</span></a>) more simply as</p>
 <p><span id="eq-abundance_N"><span class="math display">\[N_{ijt} \sim Poisson(λ_{ijt}×z_{ijt}), \tag{D.31}\]</span></span></p>
-<p>with variability among strata and grid cells modeled the same (<a href="#eq-hurdle_lambda" class="quarto-xref">Equation&nbsp;<span>D.6</span></a>, <a href="#eq-hurdle_alpha" class="quarto-xref">Equation&nbsp;<span>D.7</span></a>, and <a href="#eq-hurdle_epsilon" class="quarto-xref">Equation&nbsp;<span>D.8</span></a>). Derivation of density, D, also does not change (<a href="#eq-hurdle_D" class="quarto-xref">Equation&nbsp;<span>D.9</span></a>, <a href="#eq-hurdle_s" class="quarto-xref">Equation&nbsp;<span>D.10</span></a>).</p>
+<p>with variability among strata and grid cells modeled the same (<a href="#eq-hurdle_lambda">Equation&nbsp;<span>D.6</span></a>, <a href="#eq-hurdle_alpha">Equation&nbsp;<span>D.7</span></a>, and <a href="#eq-hurdle_epsilon">Equation&nbsp;<span>D.8</span></a>). Derivation of density, D, also does not change (<a href="#eq-hurdle_D">Equation&nbsp;<span>D.9</span></a>, <a href="#eq-hurdle_s">Equation&nbsp;<span>D.10</span></a>).</p>
 </section>
 <section id="observation-process-1" class="level4">
 <h4 class="anchored" data-anchor-id="observation-process-1">Observation process</h4>
-<p>We model the sum of observed counts in the same manner as the hurdle model (<a href="#eq-hurdle_n" class="quarto-xref">Equation&nbsp;<span>D.11</span></a>), but we omit observation models for point occupancy (i.e., omit <a href="#eq-hurdle_y" class="quarto-xref">Equation&nbsp;<span>D.12</span></a> and <a href="#eq-hurdle_p_s" class="quarto-xref">Equation&nbsp;<span>D.13</span></a>). The remaining observation sub-models exactly match those of the hurdle model (<a href="#eq-hurdle_p_a" class="quarto-xref">Equation&nbsp;<span>D.14</span></a> - <a href="#eq-hurdle_SD_sigma_h_par" class="quarto-xref">Equation&nbsp;<span>D.30</span></a>).</p>
+<p>We model the sum of observed counts in the same manner as the hurdle model (<a href="#eq-hurdle_n">Equation&nbsp;<span>D.11</span></a>), but we omit observation models for point occupancy (i.e., omit <a href="#eq-hurdle_y">Equation&nbsp;<span>D.12</span></a> and <a href="#eq-hurdle_p_s">Equation&nbsp;<span>D.13</span></a>). The remaining observation sub-models exactly match those of the hurdle model (<a href="#eq-hurdle_p_a">Equation&nbsp;<span>D.14</span></a> - <a href="#eq-hurdle_SD_sigma_h_par">Equation&nbsp;<span>D.30</span></a>).</p>
 </section>
 </section>
 <section id="sec-occupancy" class="level3">
@@ -509,13 +474,13 @@ and
 <p>For species that we modeled occupancy separately from abundance, we describe here the occupancy model, focusing on the model components that differed from the hurdle model.</p>
 <section id="state-process-2" class="level4">
 <h4 class="anchored" data-anchor-id="state-process-2">State process</h4>
-<p>We model species occupancy of grid cells and points in the same manner as for the hurdle model (<a href="#eq-hurdle_z" class="quarto-xref">Equation&nbsp;<span>D.1</span></a> - <a href="#eq-hurdle_theta" class="quarto-xref">Equation&nbsp;<span>D.4</span></a>). The remainder of the ecological portion of the hurdle model (<a href="#eq-hurdle_N" class="quarto-xref">Equation&nbsp;<span>D.5</span></a> - <a href="#eq-hurdle_s" class="quarto-xref">Equation&nbsp;<span>D.10</span></a>) are ommitted from the occupancy model.</p>
+<p>We model species occupancy of grid cells and points in the same manner as for the hurdle model (<a href="#eq-hurdle_z">Equation&nbsp;<span>D.1</span></a> - <a href="#eq-hurdle_theta">Equation&nbsp;<span>D.4</span></a>). The remainder of the ecological portion of the hurdle model (<a href="#eq-hurdle_N">Equation&nbsp;<span>D.5</span></a> - <a href="#eq-hurdle_s">Equation&nbsp;<span>D.10</span></a>) are ommitted from the occupancy model.</p>
 </section>
 <section id="observation-process-2" class="level4">
 <h4 class="anchored" data-anchor-id="observation-process-2">Observation process</h4>
 <p>We model species detections at points using</p>
 <p><span id="eq-occupancy_y"><span class="math display">\[y_{ijt} \sim Binomial\biggl(u_{ijt},p_{tl}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr), \tag{D.32}\]</span></span></p>
-<p>with <span class="math inline">\(p_{tl}\)</span> here being equivalent to <span class="math inline">\(p_{[s],tl}\)</span> in <a href="#eq-hurdle_y" class="quarto-xref">Equation&nbsp;<span>D.12</span></a>. Overall species detectability for a point survey, <span class="math inline">\(p_{tl}\)</span>, summarizes the probability vector</p>
+<p>with <span class="math inline">\(p_{tl}\)</span> here being equivalent to <span class="math inline">\(p_{[s],ijt}\)</span> in <a href="#eq-hurdle_y">Equation&nbsp;<span>D.12</span></a>. Overall species detectability for a point survey, <span class="math inline">\(p_{tl}\)</span>, summarizes the probability vector</p>
 <p><span id="eq-occupancy_p"><span class="math display">\[p_{tl}=∑_{r=1}^{R} \mathbf{π_{[R],tl}^{[c]}} \tag{D.33}\]</span></span></p>
 <p>consisting of multinomial cell probabilities for</p>
 <p><span id="eq-occupancy_y_R"><span class="math display">\[\mathbf{y_{[R],ijt}} \sim Multinomial \biggl(y_{ijtl}, \mathbf{π_{[R],tl}^{[c]}} \biggr), \tag{D.34}\]</span></span></p>
@@ -523,7 +488,7 @@ and
 <p><span id="eq-occupancy_pi_R"><span class="math display">\[π_{[R],trl}=p_{[R],tl} (1-p_{[R],tl})^{r-1}, \tag{D.35}\]</span></span></p>
 <p>and are scaled to sum to 1,</p>
 <p><span id="eq-occupancy_pi_R_c"><span class="math display">\[π_{[R],trl}^{[c]}=π_{[R],trl}⁄p_{tl}, \tag{D.36}\]</span></span></p>
-<p>where <span class="math inline">\(p_{[R],tl}\)</span> is species detectability for a single 2-min time removal bin. We model variability in species detectability here (<span class="math inline">\(p_{[R],tl}\)</span>) in the same manner as the availability component of the hurdle model (<span class="math inline">\(p_{[ar]}\)</span> in <a href="#eq-hurdle_p_ar" class="quarto-xref">Equation&nbsp;<span>D.26</span></a>, <a href="#eq-hurdle_mu_par" class="quarto-xref">Equation&nbsp;<span>D.29</span></a>, and <a href="#eq-hurdle_SD_sigma_h_par" class="quarto-xref">Equation&nbsp;<span>D.30</span></a>), including the shorter 5-min survey period in 2008-2009 (see explanation following <a href="#eq-hurdle_pi_a_cell_c" class="quarto-xref">Equation&nbsp;<span>D.19</span></a>).</p>
+<p>where <span class="math inline">\(p_{[R],tl}\)</span> is species detectability for a single 2-min time removal bin. We model variability in species detectability here (<span class="math inline">\(p_{[R],tl}\)</span>) in the same manner as the availability component of the hurdle model (<span class="math inline">\(p_{[ar]}\)</span> in <a href="#eq-hurdle_p_ar">Equation&nbsp;<span>D.26</span></a>, <a href="#eq-hurdle_mu_par">Equation&nbsp;<span>D.29</span></a>, and <a href="#eq-hurdle_SD_sigma_h_par">Equation&nbsp;<span>D.30</span></a>), including the shorter 5-min survey period in 2008-2009 (see explanation following <a href="#eq-hurdle_pi_a_cell_c">Equation&nbsp;<span>D.19</span></a>).</p>
 </section>
 </section>
 <section id="trend-estimation" class="level3">
@@ -535,21 +500,21 @@ and
 </section>
 <section id="sec-plotsize" class="level3">
 <h3 class="anchored" data-anchor-id="sec-plotsize">Plot size</h3>
-<p>Following established practice for distance sampling data (Buckland et al.&nbsp;2001:15, 151), we truncated detections for each species beyond the 90% quantile of recorded distances from the surveyor. The purpose of this practice is to improve the fit of the perceptibility curve by minimizing the influence of outliers on estimation (e.g., <span class="math inline">\(p_{[p],tl}\)</span> in <a href="#eq-hurdle_p_p" class="quarto-xref">Equation&nbsp;<span>D.15</span></a>). In our unified framework, truncation sets the plot size for estimation of density and occupancy. Because density is abundance scaled by area, interpretation of density does not depend on plot size, but interpretation of occupancy requires consideration of plot size depending on desired interpretation.</p>
+<p>Following established practice for distance sampling data (Buckland et al.&nbsp;2001:15, 151), we truncated detections for each species beyond the 90% quantile of recorded distances from the surveyor. The purpose of this practice is to improve the fit of the perceptibility curve by minimizing the influence of outliers on estimation (e.g., <span class="math inline">\(p_{[p],tl}\)</span> in <a href="#eq-hurdle_p_p">Equation&nbsp;<span>D.15</span></a>). In our unified framework, truncation sets the plot size for estimation of density and occupancy. Because density is abundance scaled by area, interpretation of density does not depend on plot size, but interpretation of occupancy requires consideration of plot size depending on desired interpretation.</p>
 <p>Occupancy describes the proportion of plots where at least one member of the species occurs (i.e., presence-absence of the species). As such, occupancy can be multipled by stratum area to estimate the area occupied, and plot size is the resolution for this quantity. For species with a plot size &lt; 125m radius (i.e., the maximum plot size whereby neighboring plots within a grid cell do not overlap), estimation of area occupied is readily interpretable as the species range within the stratum. For plot sizes &gt; 125m radius, neighboring plots can overlap, so a single individual can potentially occupy &gt; 1 plot. Thus, for species with plot radii &gt; 125m, area occupied is less readily interpretable as the species range and instead more clearly quantifies space use (Latif et al.&nbsp;2016). Because of the difference in plot size among species, occupancy estimates are not entirely comparable across species. Nevertheless, large differences in occupancy should be ecologically meaningful. Moreover, application of estimates for quantifying the proportion or area of a stratum occupied would be comparable across species with plot sizes &lt; 125m radius and roughly comparable across species with larger plot sizes. Trends in occupancy will also be comparable across species regardless of plot size. Additionally, trends in occupancy can be more clearly interpretable as changes in species range regardless of plot size, whereas trends in abundance may primarily reflect changes in population size.</p>
 </section>
 <section id="model-selection" class="level3">
 <h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
 <p>For each species, we considered a series of alternative model structures in order to balance model fit, complexity, and computational efficiency. Reflecting the estimation objectives for the analysis, the ecological component of all models shared the same structure, but varied in complexity of the observation process model. Because accounting for heterogeneity in bird observability is critical for accurate population estimation, we aimed to fit maximally complex observation models supported by the data. Moreover, because corrections to count data generated from distance sampling are relatively robust to heterogeneity (see pooling robustness in BUckland et al.&nbsp;2001:41-42), we prioritized allowing heterogeneity in availability over perceptibility.</p>
 <p>We first considered two potential functions for describing the decline in perceptibility of birds with distance from the surveyor: a half-normal model and a hazard model. We preliminarily fitted detection-only versions of these models to the raw distance data (i.e., distances not indexed by sampling unit or year). We used the Watanabe-Akaike Information Criterion (WAIC; Watanabe 2010, Hooten and Hobbs 2015) to select the most parsimonious perceptibility functional form and then retained that function for each species for modeling distance-based perceptibility in the primary analysis.</p>
-<p>For primary analysis of data for each species, we first considered the maximally complex hurdle model (hereafter global hurdle model), which included annual variation in both perceptibility and availability, and variability in availability among Bird Conservation Regions (<a href="#eq-hurdle_HN_sigma" class="quarto-xref">Equation&nbsp;<span>D.24</span></a> - <a href="#eq-hurdle_p_ar" class="quarto-xref">Equation&nbsp;<span>D.26</span></a>). If the global hurdle model did not converge after a specified number of attempts (for details on model fitting, convergence, and MCMC sampling criteria, see <a href="#sec-modelfitting" class="quarto-xref"><span>Section D.1.8</span></a> below), we then considered a constant perceptibility hurdle model, which replaced either <a href="#eq-hurdle_HN_sigma" class="quarto-xref">Equation&nbsp;<span>D.24</span></a> and <a href="#eq-hurdle_mu_sigma" class="quarto-xref">Equation&nbsp;<span>D.27</span></a> or <a href="#eq-hurdle_HZ_h" class="quarto-xref">Equation&nbsp;<span>D.25</span></a> and <a href="#eq-hurdle_mu_h" class="quarto-xref">Equation&nbsp;<span>D.28</span></a> with</p>
+<p>For primary analysis of data for each species, we first considered the maximally complex hurdle model (hereafter global hurdle model), which included annual variation in both perceptibility and availability, and variability in availability among Bird Conservation Regions (<a href="#eq-hurdle_HN_sigma">Equation&nbsp;<span>D.24</span></a> - <a href="#eq-hurdle_p_ar">Equation&nbsp;<span>D.26</span></a>). If the global hurdle model did not converge after a specified number of attempts (for details on model fitting, convergence, and MCMC sampling criteria, see <a href="#sec-modelfitting"><span>Section&nbsp;D.1.8</span></a> below), we then considered a constant perceptibility hurdle model, which replaced either <a href="#eq-hurdle_HN_sigma">Equation&nbsp;<span>D.24</span></a> and <a href="#eq-hurdle_mu_sigma">Equation&nbsp;<span>D.27</span></a> or <a href="#eq-hurdle_HZ_h">Equation&nbsp;<span>D.25</span></a> and <a href="#eq-hurdle_mu_h">Equation&nbsp;<span>D.28</span></a> with</p>
 <p><span id="eq-constant_sigma"><span class="math display">\[log(σ) \sim Normal(4.5,1.5) \tag{D.39}\]</span></span></p>
 <center>
 or
 </center>
 <p><span id="eq-constant_h"><span class="math display">\[log(h) \sim Normal(4.5,1.5), \tag{D.40}\]</span></span></p>
 <p>respectively. If a constant perceptibility model also failed to converge, we switched to a global abundance model. We allowed for simpler models (i.e., a constant-perceptiblity abundance model and constant-availability hurdle and abundance models), but we only resorted to the global abundance model for 2% of species, and did not need anything simpler to estimate abundance for any species.</p>
-<p>When estimating abundance with the abundance model, we estimated occupancy with occupancy models. As with abundance models, we were always able to meet convergence and sampling criteria with a global occupancy model (i.e., detectability varied among years and Bird Conservation Regions as in <a href="#eq-hurdle_p_ar" class="quarto-xref">Equation&nbsp;<span>D.26</span></a>), so we never needed a constant detectability model.</p>
+<p>When estimating abundance with the abundance model, we estimated occupancy with occupancy models. As with abundance models, we were always able to meet convergence and sampling criteria with a global occupancy model (i.e., detectability varied among years and Bird Conservation Regions as in <a href="#eq-hurdle_p_ar">Equation&nbsp;<span>D.26</span></a>), so we never needed a constant detectability model.</p>
 </section>
 <section id="sec-modelfitting" class="level3">
 <h3 class="anchored" data-anchor-id="sec-modelfitting">Model fitting</h3>
@@ -641,27 +606,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -671,17 +619,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -693,130 +632,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -860,7 +676,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -886,32 +701,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -973,7 +762,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./29-protocol-changes.html" class="pagination-link" aria-label="Protocol Changes Over Time">
+      <a href="./29-protocol-changes.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Protocol Changes Over Time</span></span>
       </a>          
   </div>
@@ -981,7 +770,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
