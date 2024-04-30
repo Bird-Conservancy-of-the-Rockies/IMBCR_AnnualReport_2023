@@ -73,15 +73,15 @@ We model the sum of observed counts (of independent clusters of individuals) acr
 
 $$n_{ijt} \sim Binomial\biggl(N_{ijt},p_{[a],tl}×p_{[p],t}×\biggl(\frac{K_{[s],ijt}}{K}\biggr)\biggr),$$ {#eq-abundance_n}
 
-where $p_{[a],tl}$ is a year- and BCR-specific availability component of detection probability, $p_{[p],t}$ is a year-specific perceptibility component of detection probability, and $K_{[s],ijt}⁄K$ is survey effort. Detection components summarize probability vectors,
+where $p_{[a],tl}$ is a year- and BCR-specific availability component of detection probability, $p_{[p],t}$ is a year-specific perceptibility component of detection probability, and $K_{[s],ijt}⁄K$ is survey effort. Detection components can be expressed as the sum of probability vectors:
 
-$$p_{[a],tl}=∑_{r=1}^{R} \mathbf{π_{[a],tl}}$$ {#eq-abundance_p_a}
+$$p_{[a],tl}=∑_{r=1}^{R} π_{[a],tlr}$$ {#eq-abundance_p_a}
 
 <center>and</center>
 
-$$p_{[p],tl}=∑_{d=1}^{d_{max}} \mathbf{π_{[p],tl}},$$ {#eq-abundance_p_p}
+$$p_{[p],tl}=∑_{d=1}^{d_{max}} π_{[p],tld},$$ {#eq-abundance_p_p}
 
-consisting of multinomial cell probabilities for
+where $π_{[a],tlr}$ and $π_{[p],tld}$ are detection probabilities within time removal and distance bins (hereafter bin probabilities), respectively. We model the distribution of counted individuals among time removal and distance bins, respectively, as
 
 $$\mathbf{y_{[a],ijt}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}} \biggr)$$ {#eq-abundance_pi_a}
 
@@ -89,21 +89,23 @@ $$\mathbf{y_{[a],ijt}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[a],tl}^{[c]}
 
 $$\mathbf{y_{[p],ijt}} \sim Multinomial \biggl(n_{ijt},\mathbf{π_{[p],tl}^{[c]}} \biggr),$$ {#eq-abundance_pi_p}
 
-where $\mathbf{y_{[a],ijt}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins, respectively. Cell probabilities for availability assume constant availability across the survey period,
+where $\mathbf{y_{[a],ijt}}$ and $\mathbf{y_{[p],ijt}}$ are vectors of counts within time removal and distance bins. Bin probabilities for availability assume constant availability across the survey period,
 
 $$π_{[a],trl}=p_{[ar],tl} (1-p_{[ar],tl})^{r-1},$$ {#eq-abundance_pi_a_cell}
 
-and are scaled to sum to 1,
-
-$$π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl},$$ {#eq-abundance_pi_a_cell_c}
-
-where $p_{[ar],tl}$ is the availability for a single 2-min time removal bin. Surveys in 2008-2009 were 5 min instead of 6 min in length, so for these years, we calculate the availability for a 1-min interval, $p_{[a1],tl}=1-\biggl((1-p_{[ar],tl})^3\biggr)^{1/6}$, and then calculate the unscaled cell probability for the third (1 min) period as $π_{[a],(t≤2)(r=3)l}=p_{[a1],tl}×(1-p_{[ar],tl})^{r-1}$. Cell probabilities for perceptibility account for area of bins with increasing distance:
+where $p_{[ar],tl}$ is the availability for a single 2-min time removal bin. Bin probabilities for perceptibility account for area of bins with increasing distance,
 
 $$π_{[p],td}=\frac{p_{[pd],td}A_d}{∑_{d=1}^{d_{[max]}}A_d},~\mathrm{and}$$ {#eq-abundance_pi_p_cell}
 
-$$π_{[p],td}^{[c]}=π_{[p],td}⁄p_{[p],t},$$ {#eq-abundance_pi_p_cell_c}
+where $p_{[pd],td}$ is the perceptibility within distance bin $d$ in year $t$, and $A_d$ is the area of distance bin $d$. Multinomial cell probabilites for modeling $\mathbf{y_{[a],ijt}}$ and $\mathbf{y_{[p],ijt}}$ represent bin probabilites scaled to sum to 1:
 
-where $p_{[pd],td}$ is the perceptibility within distance bin $d$ in year $t$, and $A_d$ is the area of distance bin $d$. We model $p_{[pd],td}$ using one of four possible perceptibility models: 1) a half-normal constant model, 2) a hazard rate constant model, 3) a half-normal year model, and 4) a hazard rate year model. For half-normal functions, we calculated \$p\_{\[pd\],td} for each distance class as:
+$$π_{[a],trl}^{[c]}=π_{[a],trl}⁄p_{[a],tl},$$ {#eq-abundance_pi_a_cell_c}
+
+<center>and</center>
+
+$$π_{[p],td}^{[c]}=π_{[p],td}⁄p_{[p],t}.$$ {#eq-abundance_pi_p_cell_c}
+
+Surveys in 2008-2009 were 5 min instead of 6 min in length, so for these years, we calculate the availability for a 1-min interval, $p_{[a1],tl}=1-\biggl((1-p_{[ar],tl})^3\biggr)^{1/6}$, and then calculate the unscaled cell probability for the third (1 min) period as $π_{[a],(t≤2)(r=3)l}=p_{[a1],tl}×(1-p_{[ar],tl})^{r-1}$. We model $p_{[pd],td}$ using one of four possible perceptibility models: 1) a half-normal constant model, 2) a hazard rate constant model, 3) a half-normal year model, and 4) a hazard rate year model. For half-normal functions, we calculated $p_{[pd],td}$ for each distance class as:
 
 $$p_{[pd],td}=\frac{2\pi\int_{c=d_{[low]}}^{c=d_{[high]}}exp\biggl(-\biggl(\frac{c^2}{2\sigma_{t^2}}\biggr)\biggr)c~dc}{A_d},$$ {#eq-abundance_p_pd_HN}
 
